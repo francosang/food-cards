@@ -11,6 +11,9 @@
   --color-muted: #6b6862;
   --color-line: #e4e1da;
   --color-tag: #efede8;
+  /* Confirmed Choice: filled tick and confirmed Card. */
+  --color-accent: #2f7d4f;
+  --color-accent-soft: #e6f4ea;
 
   --color-protein: #b4233c;
   --color-protein-soft: #fde7ea;

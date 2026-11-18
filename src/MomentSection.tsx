@@ -1,30 +1,79 @@
 import { MOMENT_LABELS, type Card, type Moment, type Nutrition } from "./catalog";
-import { CardView } from "./CardView";
+import { CardView, type CardState } from "./CardView";
 import { formatKcal } from "./format";
 
 interface MomentSectionProps {
   moment: Moment;
   goal: Nutrition;
   cards: Card[];
+  /** Id of the selected (not yet confirmed) Card, if any. */
+  selectedId: string | undefined;
+  /** Id of the Card of this Moment's Choice, if any. */
+  chosenId: string | undefined;
+  onCardPress: (cardId: string) => void;
+  onTickPress: () => void;
 }
 
-export function MomentSection({ moment, goal, cards }: MomentSectionProps) {
+export function MomentSection({
+  moment,
+  goal,
+  cards,
+  selectedId,
+  chosenId,
+  onCardPress,
+  onTickPress,
+}: MomentSectionProps) {
   const headingId = `moment-${moment}`;
+  const label = MOMENT_LABELS[moment];
+  const confirmed = chosenId !== undefined;
+
+  function stateOf(card: Card): CardState {
+    if (confirmed) return card.id === chosenId ? "confirmed" : "normal";
+    return card.id === selectedId ? "selected" : "normal";
+  }
+
   return (
     <section aria-labelledby={headingId} className="py-3">
-      <header className="flex items-baseline justify-between px-4">
+      <header className="flex h-9 items-center justify-between gap-3 px-4">
         <h2 id={headingId} className="text-xl font-bold">
-          {MOMENT_LABELS[moment]}
+          {label}
         </h2>
-        <p className="text-sm text-muted">{formatKcal(goal.kcal)} kcal</p>
+        <div className="flex items-center gap-3">
+          <p className="text-sm text-muted">{formatKcal(goal.kcal)} kcal</p>
+          {(confirmed || selectedId !== undefined) && (
+            <TickButton
+              confirmed={confirmed}
+              label={confirmed ? `Quitar elección de ${label.toLowerCase()}` : `Confirmar ${label.toLowerCase()}`}
+              onClick={onTickPress}
+            />
+          )}
+        </div>
       </header>
-      <ul className="mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2">
+      <ul className="mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 py-1 pb-2">
         {cards.map((card) => (
           <li key={card.id} className="snap-start">
-            <CardView card={card} />
+            <CardView card={card} state={stateOf(card)} onPress={() => onCardPress(card.id)} />
           </li>
         ))}
       </ul>
     </section>
+  );
+}
+
+/** Outline = confirm the Selection; filled = confirmed (tap to undo). */
+function TickButton({ confirmed, label, onClick }: { confirmed: boolean; label: string; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      onClick={onClick}
+      className={`grid size-9 place-items-center rounded-full border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+        confirmed ? "border-accent bg-accent text-white" : "border-ink text-ink"
+      }`}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5" fill="none" stroke="currentColor" strokeWidth={3}>
+        <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
   );
 }

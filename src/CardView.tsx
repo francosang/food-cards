@@ -9,31 +9,62 @@ const MACRO_CHIPS = [
 
 const KIND_LABELS: Record<CardKind, string> = { sweet: "Dulce", savory: "Salado" };
 
+/** normal, selected (a Selection) or confirmed (the Moment's Choice). */
+export type CardState = "normal" | "selected" | "confirmed";
+
+const STATE_CLASSES: Record<CardState, string> = {
+  normal: "border-line bg-surface",
+  selected: "border-ink bg-surface ring-2 ring-ink",
+  confirmed: "border-accent bg-accent-soft ring-2 ring-accent",
+};
+
 function showsKind(card: Card): boolean {
   return card.moment === "breakfast" || card.moment === "snack";
 }
 
-export function CardView({ card }: { card: Card }) {
+interface CardViewProps {
+  card: Card;
+  state: CardState;
+  onPress: () => void;
+}
+
+/**
+ * A fixed-size Card. The whole Card is a toggle button (stretched over it, so the
+ * heading and chips keep their semantics); the reserved bottom slot sits above it.
+ */
+export function CardView({ card, state, onPress }: CardViewProps) {
   const headingId = `card-${card.id}`;
   return (
     <article
       aria-labelledby={headingId}
-      className="flex h-64 w-64 shrink-0 snap-start flex-col rounded-2xl border border-line bg-surface p-4 shadow-sm"
+      className={`relative flex h-64 w-64 shrink-0 snap-start flex-col rounded-2xl border p-4 shadow-sm transition-shadow ${STATE_CLASSES[state]}`}
     >
-      <div className="flex h-6 items-start">
-        {showsKind(card) && (
+      <button
+        type="button"
+        aria-labelledby={headingId}
+        aria-pressed={state !== "normal"}
+        onClick={onPress}
+        className="absolute inset-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+      />
+      <div className="pointer-events-none relative flex h-6 items-start justify-between">
+        {showsKind(card) ? (
           <span className="rounded-full bg-tag px-2 py-0.5 text-xs font-medium text-muted">
             {KIND_LABELS[card.kind]}
           </span>
+        ) : (
+          <span />
+        )}
+        {state === "confirmed" && (
+          <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-white">Elegida</span>
         )}
       </div>
-      <h3 id={headingId} className="mt-1 line-clamp-2 min-h-12 text-base leading-6 font-semibold">
+      <h3 id={headingId} className="pointer-events-none relative mt-1 line-clamp-2 min-h-12 text-base leading-6 font-semibold">
         {card.name}
       </h3>
-      <p className="mt-2 text-sm text-muted">
+      <p className="pointer-events-none relative mt-2 text-sm text-muted">
         <span className="text-4xl font-bold tracking-tight text-ink">{formatKcal(card.nutrition.kcal)}</span> kcal
       </p>
-      <ul className="mt-3 flex gap-2" aria-label="Macros">
+      <ul className="pointer-events-none relative mt-3 flex gap-2" aria-label="Macros">
         {MACRO_CHIPS.map(({ key, short, label, className }) => {
           const grams = formatGrams(card.nutrition[key]);
           return (
@@ -47,8 +78,11 @@ export function CardView({ card }: { card: Card }) {
           );
         })}
       </ul>
-      {/* Reserved slot: the "Ver detalles" button will go here without resizing the Card. */}
-      <div className="mt-auto h-9" />
+      {/*
+        Reserved slot, stacked above the Card's button: "Ver detalles" goes here (ticket 06)
+        without resizing the Card. Give that button `pointer-events-auto`.
+      */}
+      <div className="pointer-events-none relative mt-auto h-9" />
     </article>
   );
 }
