@@ -35,3 +35,16 @@ export function useDay(date: string): Day | null | undefined {
 
   return state?.date === date ? state.day : undefined;
 }
+
+/**
+ * Every stored Day, most recent first, kept up to date by subscription.
+ * `undefined` until the first emission. Includes today's Day.
+ */
+export function useAllDays(): Day[] | undefined {
+  const repository = useDayRepository();
+  const [days, setDays] = useState<Day[] | undefined>();
+
+  useEffect(() => repository.subscribeHistory(setDays), [repository]);
+
+  return days;
+}

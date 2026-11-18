@@ -2,9 +2,11 @@ import { useMemo, useState } from "react";
 import { MOMENTS, parseCatalog, type Card, type CardsFile, type Moment } from "./catalog";
 import { useToday } from "./clock/ClockProvider";
 import { useDay, useDayRepository } from "./days/DayRepositoryProvider";
+import { HistoryView } from "./HistoryView";
 import { MomentSection } from "./MomentSection";
 import { ProgressHeader } from "./ProgressHeader";
 import { dayTotals, previewTotals } from "./progress";
+import { useRoute } from "./route";
 
 export interface AppProps {
   cardsFile: CardsFile;
@@ -20,6 +22,7 @@ function selectedCards(cards: Record<Moment, Card[]>, selections: Selections): P
 }
 
 export function App({ cardsFile }: AppProps) {
+  const route = useRoute();
   const catalog = useMemo(() => parseCatalog(cardsFile), [cardsFile]);
   const repository = useDayRepository();
   const { today, refresh: refreshToday } = useToday();
@@ -60,6 +63,9 @@ export function App({ cardsFile }: AppProps) {
     select(moment, undefined, date);
     void repository.confirmChoice(date, moment, card, catalog.goal);
   }
+
+  // The Home's state stays here while the Historial is open, so Selections survive a visit.
+  if (route === "history") return <HistoryView />;
 
   return (
     <>

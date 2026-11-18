@@ -1,5 +1,6 @@
 import type { Nutrition } from "./catalog";
 import { formatGrams, formatKcal } from "./format";
+import { HISTORY_HASH, openHistory } from "./route";
 
 const MACRO_BARS = [
   { key: "protein", short: "P", label: "Proteína", fill: "bg-protein", ghost: "bg-protein/35", track: "bg-protein-soft" },
@@ -80,11 +81,22 @@ export function ProgressHeader({ totals, preview, goal }: ProgressHeaderProps) {
   return (
     <header aria-label="Progreso del día" className="sticky top-0 z-10 border-b border-line bg-page/95 backdrop-blur">
       <div className="mx-auto max-w-screen-sm px-4 py-3">
-        <p className="text-sm text-muted">
-          <span className="text-2xl font-bold tracking-tight text-ink">{formatKcal(totals.kcal)}</span> /{" "}
-          {formatKcal(goal.kcal)} kcal
-          {Math.round(preview.kcal) > 0 && <span className="ml-2 text-xs">{kcalPreview}</span>}
-        </p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm text-muted">
+            <span className="text-2xl font-bold tracking-tight text-ink">{formatKcal(totals.kcal)}</span> /{" "}
+            {formatKcal(goal.kcal)} kcal
+            {Math.round(preview.kcal) > 0 && <span className="ml-2 text-xs">{kcalPreview}</span>}
+          </p>
+          <a
+            href={HISTORY_HASH}
+            onClick={openHistory}
+            aria-label="Historial"
+            title="Historial"
+            className="-mr-2 grid size-10 shrink-0 place-items-center rounded-full text-muted hover:bg-tag hover:text-ink"
+          >
+            <HistoryIcon />
+          </a>
+        </div>
         <Bar
           label="Kcal"
           value={totals.kcal}
@@ -119,5 +131,25 @@ export function ProgressHeader({ totals, preview, goal }: ProgressHeaderProps) {
         </div>
       </div>
     </header>
+  );
+}
+
+/** A clock with a back arrow: past Days. */
+function HistoryIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="size-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+      <path d="M3 3v5h5" />
+      <path d="M12 7v5l3 2" />
+    </svg>
   );
 }
