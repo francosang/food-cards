@@ -49,7 +49,8 @@ export function App({ cardsFile }: AppProps) {
     <>
       <ProgressHeader totals={dayTotals(day)} goal={goal.daily} />
       <main className="mx-auto max-w-screen-sm py-2">
-        {MOMENTS.map((moment) => (
+        {/* Mounted once the Day has loaded, so each carousel starts at its Choice. */}
+        {day !== undefined && MOMENTS.map((moment) => (
           <MomentSection
             key={moment}
             moment={moment}

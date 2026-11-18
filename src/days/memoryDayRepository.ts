@@ -1,7 +1,7 @@
 import type { Day, DayListener, DayRepository } from "./DayRepository";
 
 /**
- * Reference implementation, kept in memory (tests and until ticket 03).
+ * Reference implementation, kept in memory: the one the UI tests inject.
  * Stores and hands out copies, so callers can never alter what is stored.
  */
 export function createMemoryDayRepository(): DayRepository {

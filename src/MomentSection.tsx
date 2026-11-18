@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 import { MOMENT_LABELS, type Card, type Moment, type Nutrition } from "./catalog";
 import { CardView, type CardState } from "./CardView";
 import { formatKcal } from "./format";
@@ -26,6 +27,17 @@ export function MomentSection({
   const headingId = `moment-${moment}`;
   const label = MOMENT_LABELS[moment];
   const confirmed = chosenId !== undefined;
+  const carouselRef = useRef<HTMLUListElement>(null);
+
+  // Only on mount (the app mounts Moments once the Day has loaded): start at the chosen Card.
+  // Later Choices are made on a Card already in view, so they don't move the carousel.
+  useLayoutEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel || chosenId === undefined) return;
+    const chosen = carousel.querySelector<HTMLElement>(`[data-card-id="${chosenId}"]`);
+    const first = carousel.firstElementChild;
+    if (chosen && first instanceof HTMLElement) carousel.scrollLeft = chosen.offsetLeft - first.offsetLeft;
+  }, []);
 
   function stateOf(card: Card): CardState {
     if (confirmed) return card.id === chosenId ? "confirmed" : "normal";
@@ -49,9 +61,13 @@ export function MomentSection({
           )}
         </div>
       </header>
-      <ul className="carousel mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 py-1 pb-2">
+      <ul
+        ref={carouselRef}
+        aria-label={`Tarjetas de ${label.toLowerCase()}`}
+        className="carousel mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 py-1 pb-2"
+      >
         {cards.map((card) => (
-          <li key={card.id} className="snap-start">
+          <li key={card.id} data-card-id={card.id} className="snap-start">
             <CardView card={card} state={stateOf(card)} onPress={() => onCardPress(card.id)} />
           </li>
         ))}
