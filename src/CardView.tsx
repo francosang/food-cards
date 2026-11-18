@@ -3,13 +3,7 @@ import { KIND_LABELS, type Card } from "./catalog";
 import { CardDetailsDialog } from "./CardDetailsDialog";
 import { formatGrams, formatKcal } from "./format";
 import { ingredientIcon, mainIngredients } from "./ingredientIcons";
-
-const MACRO_CHIPS = [
-  { key: "protein", short: "P", label: "Proteína", className: "bg-protein-soft text-protein" },
-  { key: "carbs", short: "C", label: "Carbohidratos", className: "bg-carbs-soft text-carbs" },
-  { key: "fat", short: "G", label: "Grasas", className: "bg-fat-soft text-fat" },
-] as const;
-
+import { MACRO_STYLES, MACROS } from "./macros";
 
 /** normal, selected (a Selection) or confirmed (the Moment's Choice). */
 export type CardState = "normal" | "selected" | "confirmed";
@@ -72,13 +66,14 @@ export function CardView({ card, state, inactive, onPress }: CardViewProps) {
         <span className="text-4xl font-bold tracking-tight text-ink">{formatKcal(card.nutrition.kcal)}</span> kcal
       </p>
       <ul className="pointer-events-none relative mt-2 flex gap-2" aria-label="Macros">
-        {MACRO_CHIPS.map(({ key, short, label, className }) => {
+        {MACROS.map((key) => {
+          const { short, label, chip } = MACRO_STYLES[key];
           const grams = formatGrams(card.nutrition[key]);
           return (
             <li
               key={key}
               aria-label={`${label} ${grams} g`}
-              className={`rounded-full px-2.5 py-1 text-xs font-semibold ${className}`}
+              className={`rounded-full px-2.5 py-1 text-xs font-semibold ${chip}`}
             >
               {short} {grams} g
             </li>

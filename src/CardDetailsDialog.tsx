@@ -2,13 +2,13 @@ import { useEffect, useId, useRef } from "react";
 import { KIND_LABELS, MOMENT_LABELS, type Card } from "./catalog";
 import { formatGrams, formatKcal } from "./format";
 import { ingredientIcon } from "./ingredientIcons";
+import { MACRO_STYLES, MACROS } from "./macros";
 
+/** The Macros, then fiber. */
 const NUTRIENT_CHIPS = [
-  { key: "protein", label: "Proteína", className: "bg-protein-soft text-protein" },
-  { key: "carbs", label: "Carbohidratos", className: "bg-carbs-soft text-carbs" },
-  { key: "fat", label: "Grasas", className: "bg-fat-soft text-fat" },
-  { key: "fiber", label: "Fibra", className: "bg-tag text-muted" },
-] as const;
+  ...MACROS.map((key) => ({ key, label: MACRO_STYLES[key].label, className: MACRO_STYLES[key].chip })),
+  { key: "fiber" as const, label: "Fibra", className: "bg-tag text-muted" },
+];
 
 interface CardDetailsDialogProps {
   card: Card;

@@ -1,12 +1,7 @@
 import type { Nutrition } from "./catalog";
 import { formatGrams, formatKcal } from "./format";
+import { MACRO_STYLES, MACROS } from "./macros";
 import { HISTORY_HASH, openHistory } from "./route";
-
-const MACRO_BARS = [
-  { key: "protein", short: "P", label: "Proteína", fill: "bg-protein", ghost: "bg-protein/35", track: "bg-protein-soft" },
-  { key: "carbs", short: "C", label: "Carbohidratos", fill: "bg-carbs", ghost: "bg-carbs/35", track: "bg-carbs-soft" },
-  { key: "fat", short: "G", label: "Grasas", fill: "bg-fat", ghost: "bg-fat/35", track: "bg-fat-soft" },
-] as const;
 
 const KCAL_BAR = { fill: "bg-ink", ghost: "bg-ink/30", track: "bg-line" };
 const EXCEEDED_BAR = { fill: "bg-exceeded", ghost: "bg-exceeded/40", track: "bg-exceeded-soft" };
@@ -108,7 +103,8 @@ export function ProgressHeader({ totals, preview, goal }: ProgressHeaderProps) {
           className="mt-1 h-2.5"
         />
         <div className="mt-2 grid grid-cols-3 gap-3">
-          {MACRO_BARS.map(({ key, short, label, ...colors }) => {
+          {MACROS.map((key) => {
+            const { short, label, fill, ghost, track } = MACRO_STYLES[key];
             const text = `${formatGrams(totals[key])} / ${formatGrams(goal[key])} g`;
             return (
               <div key={key}>
@@ -122,7 +118,7 @@ export function ProgressHeader({ totals, preview, goal }: ProgressHeaderProps) {
                   goal={goal[key]}
                   text={text}
                   previewText={`+${formatGrams(preview[key])} g previstos`}
-                  colors={colors}
+                  colors={{ fill, ghost, track }}
                   className="mt-1 h-1.5"
                 />
               </div>
