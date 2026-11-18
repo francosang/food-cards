@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { MOMENTS, parseCatalog, type CardsFile, type Moment } from "./catalog";
+import { MOMENTS, parseCatalog, type Card, type CardsFile, type Moment } from "./catalog";
 import { useDay, useDayRepository } from "./days/DayRepositoryProvider";
 import { MomentSection } from "./MomentSection";
 import { ProgressHeader } from "./ProgressHeader";
-import { dayTotals } from "./progress";
+import { dayTotals, previewTotals } from "./progress";
 import { localDate } from "./today";
 
 export interface AppProps {
@@ -12,6 +12,12 @@ export interface AppProps {
 
 /** Ephemeral UI state: at most one selected Card id per Moment. Never stored. */
 type Selections = Partial<Record<Moment, string>>;
+
+function selectedCards(cards: Record<Moment, Card[]>, selections: Selections): Partial<Record<Moment, Card>> {
+  return Object.fromEntries(
+    MOMENTS.map((moment) => [moment, cards[moment].find((card) => card.id === selections[moment])]),
+  );
+}
 
 export function App({ cardsFile }: AppProps) {
   const catalog = useMemo(() => parseCatalog(cardsFile), [cardsFile]);
@@ -47,7 +53,11 @@ export function App({ cardsFile }: AppProps) {
 
   return (
     <>
-      <ProgressHeader totals={dayTotals(day)} goal={goal.daily} />
+      <ProgressHeader
+        totals={dayTotals(day)}
+        preview={previewTotals(day, selectedCards(catalog.cards, selections))}
+        goal={goal.daily}
+      />
       <main className="mx-auto max-w-screen-sm py-2">
         {MOMENTS.map((moment) => (
           <MomentSection

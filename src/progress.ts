@@ -1,4 +1,4 @@
-import { MOMENTS, type Nutrition } from "./catalog";
+import { MOMENTS, type Card, type Moment, type Nutrition } from "./catalog";
 import type { Day } from "./days/DayRepository";
 
 export const ZERO: Nutrition = { kcal: 0, protein: 0, carbs: 0, fat: 0 };
@@ -8,6 +8,20 @@ export function dayTotals(day: Day | null | undefined): Nutrition {
   return MOMENTS.reduce((sum, moment) => {
     const choice = day?.choices[moment];
     return choice ? addNutrition(sum, choice.nutrition) : sum;
+  }, ZERO);
+}
+
+/**
+ * Ghost preview: what the Selections would add if confirmed. Only Moments without a Choice
+ * count, so a confirmed Moment is never added twice.
+ */
+export function previewTotals(
+  day: Day | null | undefined,
+  selected: Partial<Record<Moment, Card>>,
+): Nutrition {
+  return MOMENTS.reduce((sum, moment) => {
+    const card = selected[moment];
+    return card && !day?.choices[moment] ? addNutrition(sum, card.nutrition) : sum;
   }, ZERO);
 }
 

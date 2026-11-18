@@ -53,6 +53,9 @@ const TEXT_PAIRS = [
   ["muted", "accent-soft"],
 ] as const;
 
+// Non-text UI parts (WCAG 1.4.11, 3:1): a bar's fill against its track.
+const UI_PAIRS = [["exceeded", "exceeded-soft"]] as const;
+
 describe("colour theme", () => {
   it("redefines every colour token for the dark system theme", () => {
     expect(Object.keys(light).length).toBeGreaterThan(0);
@@ -67,6 +70,10 @@ describe("colour theme", () => {
   ])("%s theme", (_name, tokens) => {
     it.each(TEXT_PAIRS)("%s text on %s meets WCAG AA (4.5:1)", (text, background) => {
       expect(contrast(tokens[text], tokens[background])).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it.each(UI_PAIRS)("the %s bar fill stands out on its %s track (3:1)", (fill, track) => {
+      expect(contrast(tokens[fill], tokens[track])).toBeGreaterThanOrEqual(3);
     });
 
     it.each(["page", "surface"])("the focus ring stands out on %s (3:1)", (background) => {
