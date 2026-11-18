@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 57-60).
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] `vite-plugin-pwa` configurado: manifest en castellano (nombre, colores, `start_url` y `scope` bajo `/food-cards/`), iconos de la app en los tamaños requeridos y service worker que precachea la app para funcionar sin conexión.
 - [ ] La app se puede instalar (criterios de instalabilidad de Chrome/Android y "Añadir a pantalla de inicio" en iOS).
@@ -14,3 +14,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 57-60).
 - [ ] Tema claro/oscuro según `prefers-color-scheme`, con colores definidos como tokens y contraste suficiente en ambos.
 - [ ] En escritorio, el contenido queda centrado con ancho máximo y sin scroll horizontal de página. El carrusel sigue siendo usable con ratón y teclado.
 - [ ] Verificado en el build publicado: Lighthouse PWA/installable sin errores y carga sin conexión tras la primera visita.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

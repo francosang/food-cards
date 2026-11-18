@@ -12,7 +12,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 11-23, 25, 33-35, 38, 39, 45, 4
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] Repositorio de Días con interfaz reactiva:
   - `subscribeDay(date, listener) → unsubscribe`, que emite el estado actual al suscribirse y después cada cambio;
@@ -51,3 +51,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 11-23, 25, 33-35, 38, 39, 45, 4
   - al montar con Elecciones ya guardadas para hoy, se muestran confirmadas;
   - un cambio en el repositorio hecho fuera de la UI se refleja en la pantalla.
 - [ ] En este ticket "hoy" puede calcularse de forma simple. El reloj inyectable llega en el 04.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 1-7, 9, 10, 61-63). Glosario: `
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] Proyecto React + Vite + TypeScript con Tailwind CSS v4 y Vitest + Testing Library (jsdom) en la raíz del repo, junto a `data/` y `scripts/`.
 - [ ] Vite configurado con `base` `/food-cards/`.
@@ -18,3 +18,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 1-7, 9, 10, 61-63). Glosario: `
 - [ ] Test del seam 2 (app renderizada con Testing Library): se ven los cuatro Momentos en orden con los nombres, kcal y P, C y G de sus Tarjetas.
 - [ ] Workflow de GitHub Actions: instala, ejecuta los tests, construye y publica en GitHub Pages en cada push a `main`. No publica si falla un test.
 - [ ] Instrucciones mínimas en el README: cómo arrancar en local, ejecutar los tests y regenerar `tarjetas.json` con `scripts/calcular.py --json`.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

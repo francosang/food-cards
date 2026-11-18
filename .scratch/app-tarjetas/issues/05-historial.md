@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 49-56). ADRs: 0001, 0002. Glosa
 
 **Blocked by:** 03, 04
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] `subscribeHistory(listener) → unsubscribe` en la interfaz del repositorio y en ambas implementaciones. Emite todos los Días ordenados por fecha descendente al suscribirse y después en cada cambio.
 - [ ] Batería de contrato ampliada:
@@ -24,3 +24,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 49-56). ADRs: 0001, 0002. Glosa
   - estado vacío;
   - ir al Historial y volver con atrás;
   - un Día creado ayer (con el reloj falso) aparece en el Historial tras cambiar de día.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

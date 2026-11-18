@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 36, 37).
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] La vista previa suma la Selección de cada Momento todavía sin Elección. Las Elecciones confirmadas no se cuentan dos veces.
 - [ ] El tramo translúcido es visualmente distinto del progreso confirmado y accesible: el texto o la etiqueta indican el valor previsto, por ejemplo "+600 kcal previstas".
@@ -17,3 +17,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 36, 37).
   - confirmar la convierte en progreso;
   - quitar la Selección la elimina;
   - un Día que supera el Objetivo marca la barra como excedida (por estado accesible o atributo, no por color).
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

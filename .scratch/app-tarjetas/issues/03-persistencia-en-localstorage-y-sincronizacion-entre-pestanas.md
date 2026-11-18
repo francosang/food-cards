@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 40, 47, 64 y "Repositorio de D�
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] Implementación del repositorio de Días sobre `localStorage`, con espacio de nombres y versión de esquema propios.
 - [ ] Pasa la batería de contrato completa del ticket 02 sin modificarla. Se ejecuta contra ambas implementaciones.
@@ -18,3 +18,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 40, 47, 64 y "Repositorio de D�
 - [ ] La app usa la implementación de `localStorage` en producción y la de memoria en los tests de UI.
 - [ ] Al cargar, el carrusel de un Momento con Elección se desplaza hasta la Tarjeta elegida; los demás empiezan en la primera.
 - [ ] Test del seam 2: un cambio externo en el repositorio (simulando otra pestaña) se refleja en el Home.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

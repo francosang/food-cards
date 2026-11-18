@@ -1,6 +1,6 @@
 # App de Tarjetas: elegir una Tarjeta por Momento y seguir el progreso del Día
 
-Status: ready-for-agent
+Status: resolved
 
 ## Problem Statement
 

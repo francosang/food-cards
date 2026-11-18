@@ -12,7 +12,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 13, 26-32 y "Datos de entrada")
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] `scripts/calcular.py --json` añade a cada ingrediente de `data/tarjetas.json` el texto de su unidad casera (la misma regla que ya usa para `docs/tarjetas.md`: múltiplos de ¼, con plural si es mayor que 1), o lo omite si no aplica. Se regenera `tarjetas.json`.
 - [ ] El botón "Ver detalles" solo es visible en la Tarjeta seleccionada o confirmada, ocupa el hueco reservado y no cambia el tamaño de la Tarjeta.
@@ -20,3 +20,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 13, 26-32 y "Datos de entrada")
 - [ ] El diálogo muestra todo lo descrito arriba, a partir de los datos de la Tarjeta.
 - [ ] Abrir el diálogo no cambia la Selección ni la Elección.
 - [ ] Tests del seam 2: seleccionar, ver detalles, comprobar ingredientes, gramos, unidad casera, nutrición con fibra y preparación, y cerrar con Escape y con el botón.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).

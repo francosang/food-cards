@@ -6,7 +6,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 41-44 y "Hoy y cambio de día")
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [ ] Reloj inyectable (por el mismo mecanismo de provider que el repositorio) que devuelve la fecha local `YYYY-MM-DD`. "Hoy" nunca es un estado guardado.
 - [ ] La fecha se vuelve a leer al montar la app, en `visibilitychange` (al volver a visible) y justo antes de cada confirmación o desconfirmación.
@@ -16,3 +16,7 @@ Spec: `.scratch/app-tarjetas/spec.md` (historias 41-44 y "Hoy y cambio de día")
   - al avanzar al día siguiente y emitir `visibilitychange`, el Home queda vacío y el Día anterior sigue en el repositorio;
   - confirmar con el reloj ya en el día siguiente, sin `visibilitychange` previo, guarda la Elección en el Día nuevo y la vista pasa a él;
   - una Selección sin confirmar desaparece al cambiar de día.
+
+## Comments
+
+Resuelto en `main` (implementado por implement-spec, revisado con code-review; correcciones en 6797481).
