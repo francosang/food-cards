@@ -96,12 +96,12 @@ export function createLocalStorageDayRepository(options: LocalStorageDayReposito
       };
     },
 
-    async confirmChoice(date, moment, card, goal) {
+    async confirmChoice(date, moment, choice, goal) {
       const existing = read(date);
       write(date, {
         date,
         goal: existing?.goal ?? goal,
-        choices: { ...existing?.choices, [moment]: card },
+        choices: { ...existing?.choices, [moment]: choice },
       });
       notify(date);
     },

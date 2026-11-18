@@ -1,4 +1,5 @@
-import type { Card, CardsFile, CardsFileCard, Goal, Moment } from "../catalog";
+import type { CardsFile, CardsFileCard, Goal, Moment } from "../catalog";
+import type { Choice } from "../days/DayRepository";
 
 /**
  * Builders for test data in the same shape as `data/tarjetas.json`
@@ -59,7 +60,7 @@ const MOMENT_BY_FILE_MOMENT: Record<string, Moment> = {
  * The Choice that confirming the Card `id` of `cardsFile` stores (a frozen copy of the
  * Card, ADR-0002): for seeding the repository as if it had been confirmed earlier.
  */
-export function choiceFixture(cardsFile: CardsFile, id: string): Card {
+export function choiceFixture(cardsFile: CardsFile, id: string): Choice {
   const card = cardsFile.tarjetas.find((c) => c.id === id);
   if (!card) throw new Error(`No Card "${id}" in the fixture`);
   return {

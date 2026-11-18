@@ -1,6 +1,7 @@
 import { act, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import type { Card, Goal } from "./catalog";
+import type { Goal, Moment } from "./catalog";
+import type { Choice } from "./days/DayRepository";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
 import { createFakeClock, returnToForeground } from "./test/fakeClock";
 import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
@@ -31,7 +32,7 @@ const OLD_GOAL: Goal = {
 };
 
 /** A Choice as it was when confirmed: these Cards are no longer in the catalog. */
-function snapshot(id: string, moment: Card["moment"], name: string, kcal: number): Card {
+function snapshot(id: string, moment: Moment, name: string, kcal: number): Choice {
   return {
     id,
     moment,
@@ -107,7 +108,7 @@ describe("Historial", () => {
 
   it("lists the Days before today, most recent first, with their stored Choices and kcal against their Goal", async () => {
     const repository = createMemoryDayRepository();
-    const confirm = (date: string, card: Card) => repository.confirmChoice(date, card.moment, card, OLD_GOAL);
+    const confirm = (date: string, choice: Choice) => repository.confirmChoice(date, choice.moment, choice, OLD_GOAL);
     await confirm("2026-10-02", snapshot("cen-09", "dinner", "Merluza al horno", 590));
     await confirm("2026-11-16", snapshot("des-07", "breakfast", "Tortitas antiguas", 420));
     await confirm("2026-11-16", snapshot("alm-07", "lunch", "Lentejas", 610));

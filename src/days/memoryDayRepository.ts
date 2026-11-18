@@ -51,12 +51,12 @@ export function createMemoryDayRepository(): DayRepository {
       };
     },
 
-    async confirmChoice(date, moment, card, goal) {
+    async confirmChoice(date, moment, choice, goal) {
       const existing = days.get(date);
       days.set(date, {
         date,
         goal: existing?.goal ?? structuredClone(goal),
-        choices: { ...existing?.choices, [moment]: structuredClone(card) },
+        choices: { ...existing?.choices, [moment]: structuredClone(choice) },
       });
       notify(date);
     },
