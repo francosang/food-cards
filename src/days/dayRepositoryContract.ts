@@ -214,6 +214,123 @@ export function describeDayRepositoryContract(
   });
 }
 
+/**
+ * How the durable contract reaches an implementation that keeps Days outside the
+ * repository instance (localStorage, Firestore), shared by several instances.
+ */
+export interface DurableDayRepositoryHarness<Store> {
+  /** A fresh, empty store: one browser's localStorage, one Firestore emulator project. */
+  createStore(): Store | Promise<Store>;
+  /**
+   * Opens one more instance over `store`: the app reopened, another tab, another device.
+   * Changes written by the other instances must reach it the way they would in production.
+   */
+  open(store: Store): DayRepository | Promise<DayRepository>;
+  /** Leaves unreadable data where the Day of `date` is stored. */
+  corruptDay(store: Store, date: string): void | Promise<void>;
+  /** Stores a Day of `date` in a schema version the implementation does not know. */
+  storeUnknownSchemaDay(store: Store, date: string): void | Promise<void>;
+}
+
+/**
+ * Seam 1, durable implementations only: what survives the instance and what other
+ * instances see. Run it in addition to `describeDayRepositoryContract`:
+ *
+ *     describeDurableDayRepositoryContract("localStorage", harness);
+ */
+export function describeDurableDayRepositoryContract<Store>(
+  name: string,
+  harness: DurableDayRepositoryHarness<Store>,
+) {
+  describe(`DayRepository durable contract: ${name}`, () => {
+    it("a new instance over the same store sees what earlier ones wrote", async () => {
+      const store = await harness.createStore();
+      const before = await harness.open(store);
+      await before.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await before.confirmChoice(YESTERDAY, "lunch", RICE, NEW_GOAL);
+
+      const reopened = await harness.open(store);
+      const today = record(reopened, TODAY);
+      const yesterday = record(reopened, YESTERDAY);
+      await settle();
+
+      expect(today.emissions).toEqual([{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }]);
+      expect(yesterday.emissions).toEqual([{ date: YESTERDAY, goal: NEW_GOAL, choices: { lunch: RICE } }]);
+    });
+
+    it("notifies this instance's subscribers of writes made by another instance", async () => {
+      const store = await harness.createStore();
+      const here = await harness.open(store);
+      const elsewhere = await harness.open(store);
+      const today = record(here, TODAY);
+      const yesterday = record(here, YESTERDAY);
+      await settle();
+
+      await elsewhere.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await settle();
+      await elsewhere.confirmChoice(TODAY, "lunch", RICE, GOAL);
+      await settle();
+      await elsewhere.removeChoice(TODAY, "breakfast");
+      await settle();
+      await elsewhere.removeChoice(TODAY, "lunch");
+      await settle();
+
+      expect(today.emissions).toEqual([
+        null,
+        { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+        { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE, lunch: RICE } },
+        { date: TODAY, goal: GOAL, choices: { lunch: RICE } },
+        null,
+      ]);
+      expect(yesterday.emissions).toEqual([null]);
+    });
+
+    it("stops notifying another instance's writes after unsubscribe", async () => {
+      const store = await harness.createStore();
+      const here = await harness.open(store);
+      const elsewhere = await harness.open(store);
+      const today = record(here, TODAY);
+      await settle();
+
+      today.unsubscribe();
+      await elsewhere.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await settle();
+
+      expect(today.emissions).toEqual([null]);
+    });
+
+    for (const [what, spoil] of [
+      ["corrupt data", harness.corruptDay],
+      ["a Day in an unknown schema version", harness.storeUnknownSchemaDay],
+    ] as const) {
+      it(`reads ${what} as an absent Day, keeping the valid Days of other dates`, async () => {
+        const store = await harness.createStore();
+        const before = await harness.open(store);
+        await before.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+        await spoil(store, TODAY);
+
+        const repository = await harness.open(store);
+        const today = record(repository, TODAY);
+        const yesterday = record(repository, YESTERDAY);
+        await settle();
+
+        expect(today.emissions).toEqual([null]);
+        expect(yesterday.emissions).toEqual([{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }]);
+
+        // The spoiled date can be used again; the others stay as they were.
+        await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, NEW_GOAL);
+        await settle();
+        const reopened = await harness.open(store);
+        const todayAgain = record(reopened, TODAY);
+        const yesterdayAgain = record(reopened, YESTERDAY);
+        await settle();
+        expect(todayAgain.emissions).toEqual([{ date: TODAY, goal: NEW_GOAL, choices: { breakfast: PORRIDGE } }]);
+        expect(yesterdayAgain.emissions).toEqual([{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }]);
+      });
+    }
+  });
+}
+
 // --- fixtures ---
 
 const TODAY = "2026-11-18";
