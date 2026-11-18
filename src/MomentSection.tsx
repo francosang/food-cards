@@ -29,14 +29,16 @@ export function MomentSection({
   const confirmed = chosenId !== undefined;
   const carouselRef = useRef<HTMLUListElement>(null);
 
-  // Only on mount (the app mounts Moments once the Day has loaded): start at the chosen Card.
-  // Later Choices are made on a Card already in view, so they don't move the carousel.
+  // Only on mount (once the Day has loaded, and on coming back from the Historial): start at the
+  // chosen Card, or else at the selected one. Later Selections and Choices are made on a Card
+  // already in view, so they don't move the carousel.
   useLayoutEffect(() => {
     const carousel = carouselRef.current;
-    if (!carousel || chosenId === undefined) return;
-    const chosen = carousel.querySelector<HTMLElement>(`[data-card-id="${chosenId}"]`);
+    const startId = chosenId ?? selectedId;
+    if (!carousel || startId === undefined) return;
+    const start = carousel.querySelector<HTMLElement>(`[data-card-id="${startId}"]`);
     const first = carousel.firstElementChild;
-    if (chosen && first instanceof HTMLElement) carousel.scrollLeft = chosen.offsetLeft - first.offsetLeft;
+    if (start && first instanceof HTMLElement) carousel.scrollLeft = start.offsetLeft - first.offsetLeft;
   }, []);
 
   function stateOf(card: Card): CardState {

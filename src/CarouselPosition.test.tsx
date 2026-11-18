@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { DayRepository } from "./days/DayRepository";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
@@ -60,6 +60,23 @@ describe("Carousel position on load", () => {
     expect(await screen.findByRole("button", { name: "Quitar elección de almuerzo" })).toBeInTheDocument();
     expect(carousel("almuerzo").scrollLeft).toBe(CARD_PITCH);
     expect(carousel("desayuno").scrollLeft).toBe(0);
+  });
+
+  it("coming back from the Historial, starts each Momento at its Elección or its Selección", async () => {
+    const repository = createMemoryDayRepository();
+    await repository.confirmChoice(TODAY, "dinner", choiceFixture(cardsFile, "cen-02"), goalFixture);
+    const { user } = renderApp({ cardsFile, repository });
+    await user.click(await screen.findByRole("button", { name: "Tortilla de claras" }));
+    await user.click(screen.getByRole("button", { name: "Lentejas" }));
+
+    await user.click(screen.getByRole("link", { name: "Historial" }));
+    window.history.back();
+
+    await waitFor(() => expect(carousel("desayuno")).toBeInTheDocument());
+    expect(carousel("desayuno").scrollLeft).toBe(2 * CARD_PITCH);
+    expect(carousel("almuerzo").scrollLeft).toBe(CARD_PITCH);
+    expect(carousel("cena").scrollLeft).toBe(CARD_PITCH);
+    expect(carousel("merienda").scrollLeft).toBe(0);
   });
 });
 
