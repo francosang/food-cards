@@ -1,0 +1,793 @@
+{
+  "_info": "Recetas de las tarjetas. Gramos según las convenciones de data/ingredientes.json. Ejecuta scripts/calcular.py para recalcular macros y regenerar docs/tarjetas.md.",
+  "tarjetas": [
+    {
+      "id": "des-01",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Porridge de avena con claras y plátano",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 190
+        },
+        {
+          "id": "avena",
+          "g": 35
+        },
+        {
+          "id": "claras",
+          "g": 200
+        },
+        {
+          "id": "platano",
+          "g": 60
+        },
+        {
+          "id": "nueces",
+          "g": 10
+        }
+      ],
+      "preparacion": "Calienta la leche con la avena 2-3 min en el micro. Añade las claras removiendo y vuelve a calentar 1-2 min en tandas de 30 s hasta que espese. Encima, el plátano en rodajas, las nueces y canela."
+    },
+    {
+      "id": "des-02",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Batido proteico de avena y fresas",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 260
+        },
+        {
+          "id": "whey",
+          "g": 25
+        },
+        {
+          "id": "avena",
+          "g": 40
+        },
+        {
+          "id": "fresas",
+          "g": 100
+        },
+        {
+          "id": "crema_cacahuete",
+          "g": 5
+        }
+      ],
+      "preparacion": "Todo a la batidora 30 s. Con fresas congeladas queda tipo smoothie."
+    },
+    {
+      "id": "des-03",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Bowl de skyr con avena y frutos rojos",
+      "ingredientes": [
+        {
+          "id": "skyr",
+          "g": 270
+        },
+        {
+          "id": "avena",
+          "g": 25
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 100
+        },
+        {
+          "id": "nueces",
+          "g": 10
+        },
+        {
+          "id": "miel",
+          "g": 10
+        }
+      ],
+      "preparacion": "Skyr en un bol, avena por encima, frutos rojos descongelados (30 s de micro) y nueces troceadas."
+    },
+    {
+      "id": "des-04",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Tortitas de avena y claras con queso batido",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 100
+        },
+        {
+          "id": "huevo",
+          "g": 55
+        },
+        {
+          "id": "avena",
+          "g": 50
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 130
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 80
+        }
+      ],
+      "preparacion": "Bate claras, huevo y avena (o tritúralos). Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el queso batido y los frutos rojos."
+    },
+    {
+      "id": "des-05",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Wrap de pavo con café con leche",
+      "ingredientes": [
+        {
+          "id": "tortilla_integral",
+          "g": 80
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 120
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 30
+        },
+        {
+          "id": "ensalada",
+          "g": 50
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 180
+        }
+      ],
+      "preparacion": "Unta la tortilla con el queso batido, añade pavo y hojas verdes y enrolla (puedes tostarla 1 min en sartén). Acompaña con café con la leche."
+    },
+    {
+      "id": "des-06",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Revuelto de claras con tostadas",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 150
+        },
+        {
+          "id": "huevo",
+          "g": 55
+        },
+        {
+          "id": "pan_integral",
+          "g": 80
+        },
+        {
+          "id": "tomate",
+          "g": 60
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 100
+        }
+      ],
+      "preparacion": "Revuelto de claras y huevo en sartén con unas gotas del aceite. Tostadas con tomate rallado y el resto del aceite. Café con leche aparte."
+    },
+    {
+      "id": "des-07",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Tostadas de atún y tomate con café con leche",
+      "ingredientes": [
+        {
+          "id": "pan_integral",
+          "g": 75
+        },
+        {
+          "id": "atun_natural",
+          "g": 112
+        },
+        {
+          "id": "tomate",
+          "g": 60
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 150
+        }
+      ],
+      "preparacion": "Tuesta el pan, tomate rallado, el aceite y el atún escurrido por encima. Café con la leche."
+    },
+    {
+      "id": "alm-01",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Pollo al curry con arroz y brócoli",
+      "ingredientes": [
+        {
+          "id": "pechuga_pollo",
+          "g": 180
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 150
+        },
+        {
+          "id": "brocoli",
+          "g": 290
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10
+        }
+      ],
+      "preparacion": "Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo."
+    },
+    {
+      "id": "alm-02",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Pasta integral con pavo y tomate",
+      "ingredientes": [
+        {
+          "id": "pechuga_pavo",
+          "g": 170
+        },
+        {
+          "id": "pasta_integral",
+          "g": 70
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 100
+        },
+        {
+          "id": "calabacin",
+          "g": 200
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15
+        }
+      ],
+      "preparacion": "Cuece la pasta. Mientras, saltea el pavo en tiras y el calabacín en dados con el aceite, añade el tomate triturado y orégano 5 min. Mezcla con la pasta."
+    },
+    {
+      "id": "alm-03",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Lomo de cerdo con patatas y judías verdes",
+      "ingredientes": [
+        {
+          "id": "lomo_cerdo",
+          "g": 210
+        },
+        {
+          "id": "patata",
+          "g": 270
+        },
+        {
+          "id": "judias_verdes",
+          "g": 200
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        }
+      ],
+      "preparacion": "Patata en dados al micro (8 min tapada) o airfryer (15 min). Judías verdes al vapor o micro. Lomo a la plancha con el aceite, ajo y perejil."
+    },
+    {
+      "id": "alm-04",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Chili de ternera con alubias y arroz",
+      "ingredientes": [
+        {
+          "id": "ternera_picada_5",
+          "g": 180
+        },
+        {
+          "id": "alubias",
+          "g": 160
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 150
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 150
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 75
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        }
+      ],
+      "preparacion": "Sofríe pimiento y cebolla con el aceite, añade la carne, comino, pimentón y chile. Agrega tomate y alubias escurridas y cuece 10 min. Sirve con el arroz."
+    },
+    {
+      "id": "alm-05",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Ensalada de garbanzos, atún y huevo",
+      "ingredientes": [
+        {
+          "id": "garbanzos",
+          "g": 230
+        },
+        {
+          "id": "atun_natural",
+          "g": 112
+        },
+        {
+          "id": "huevo",
+          "g": 55
+        },
+        {
+          "id": "ensalada",
+          "g": 150
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 50
+        },
+        {
+          "id": "pan_integral",
+          "g": 30
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        }
+      ],
+      "preparacion": "Mezcla garbanzos enjuagados, atún escurrido, huevo cocido, ensalada, pimiento y cebolla picados. Aliña con aceite y vinagre. El pan, aparte."
+    },
+    {
+      "id": "alm-06",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Bacalao con arroz integral y espinacas",
+      "ingredientes": [
+        {
+          "id": "bacalao",
+          "g": 240
+        },
+        {
+          "id": "arroz_integral_vasito",
+          "g": 175
+        },
+        {
+          "id": "espinacas",
+          "g": 250
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 60
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10
+        }
+      ],
+      "preparacion": "Bacalao al horno o airfryer (180 °C, 12-15 min) con ajo y pimentón. Espinacas salteadas con el aceite y ajo. Arroz 1 min de micro, con un poco de tomate si quieres."
+    },
+    {
+      "id": "alm-07",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Lentejas estofadas con pollo y verduras",
+      "ingredientes": [
+        {
+          "id": "lentejas",
+          "g": 180
+        },
+        {
+          "id": "pechuga_pollo",
+          "g": 150
+        },
+        {
+          "id": "menestra",
+          "g": 150
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 50
+        },
+        {
+          "id": "patata",
+          "g": 130
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10
+        }
+      ],
+      "preparacion": "Sofríe el pollo en dados con el aceite, añade menestra, patata en dados, tomate, pimentón y un vaso de agua. 15 min y añade las lentejas enjuagadas 5 min al final."
+    },
+    {
+      "id": "mer-01",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Skyr con manzana y nueces",
+      "ingredientes": [
+        {
+          "id": "skyr",
+          "g": 300
+        },
+        {
+          "id": "manzana",
+          "g": 100
+        },
+        {
+          "id": "nueces",
+          "g": 10
+        }
+      ],
+      "preparacion": "Skyr con la manzana en dados, canela y las nueces troceadas."
+    },
+    {
+      "id": "mer-02",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Queso batido con frutos rojos y cacao",
+      "ingredientes": [
+        {
+          "id": "queso_batido_proteinas",
+          "g": 300
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 150
+        },
+        {
+          "id": "cacao_puro",
+          "g": 5
+        },
+        {
+          "id": "almendras",
+          "g": 10
+        }
+      ],
+      "preparacion": "Mezcla el queso batido con el cacao y edulcorante al gusto. Encima los frutos rojos y las almendras."
+    },
+    {
+      "id": "mer-03",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Batido de whey con plátano",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 200
+        },
+        {
+          "id": "whey",
+          "g": 30
+        },
+        {
+          "id": "platano",
+          "g": 60
+        },
+        {
+          "id": "crema_cacahuete",
+          "g": 10
+        }
+      ],
+      "preparacion": "Todo a la batidora con hielo."
+    },
+    {
+      "id": "mer-04",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Yogur proteico con kiwi y lino",
+      "ingredientes": [
+        {
+          "id": "yogur_proteico",
+          "g": 300
+        },
+        {
+          "id": "kiwi",
+          "g": 80
+        },
+        {
+          "id": "lino_molido",
+          "g": 10
+        },
+        {
+          "id": "avena",
+          "g": 10
+        }
+      ],
+      "preparacion": "Yogur con kiwi en rodajas, lino molido y avena por encima."
+    },
+    {
+      "id": "mer-05",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Bocadillo de pavo y yogur proteico",
+      "ingredientes": [
+        {
+          "id": "pan_integral",
+          "g": 45
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 90
+        },
+        {
+          "id": "tomate",
+          "g": 40
+        },
+        {
+          "id": "yogur_proteico",
+          "g": 125
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        }
+      ],
+      "preparacion": "Bocadillo de pan de molde integral con tomate, un hilo de aceite y pavo. Yogur de postre."
+    },
+    {
+      "id": "mer-06",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Tortitas de maíz con atún y queso batido",
+      "ingredientes": [
+        {
+          "id": "tortitas_maiz",
+          "g": 24
+        },
+        {
+          "id": "atun_natural",
+          "g": 112
+        },
+        {
+          "id": "queso_batido_proteinas",
+          "g": 80
+        },
+        {
+          "id": "tomate",
+          "g": 100
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5
+        }
+      ],
+      "preparacion": "Mezcla el atún con el queso batido, pimienta y orégano. Úntalo sobre las tortitas y acompaña con tomate cherry."
+    },
+    {
+      "id": "mer-07",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Hummus con zanahoria y pavo",
+      "ingredientes": [
+        {
+          "id": "hummus",
+          "g": 20
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 180
+        },
+        {
+          "id": "zanahoria",
+          "g": 180
+        },
+        {
+          "id": "pan_integral",
+          "g": 15
+        }
+      ],
+      "preparacion": "Bastones de zanahoria para mojar en el hummus, rollitos de pavo y, si cabe, una tostada."
+    },
+    {
+      "id": "cen-01",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Merluza con patatas y judías verdes",
+      "ingredientes": [
+        {
+          "id": "merluza",
+          "g": 290
+        },
+        {
+          "id": "patata",
+          "g": 230
+        },
+        {
+          "id": "judias_verdes",
+          "g": 240
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15
+        }
+      ],
+      "preparacion": "Patata en rodajas al micro (8 min tapada) o airfryer. Merluza encima al horno o airfryer 12 min con ajo, perejil y el aceite. Judías al vapor."
+    },
+    {
+      "id": "cen-02",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Bacalao con garbanzos y espinacas",
+      "ingredientes": [
+        {
+          "id": "bacalao",
+          "g": 180
+        },
+        {
+          "id": "garbanzos",
+          "g": 120
+        },
+        {
+          "id": "espinacas",
+          "g": 200
+        },
+        {
+          "id": "pan_integral",
+          "g": 60
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15
+        }
+      ],
+      "preparacion": "Saltea ajo con el aceite, añade espinacas y garbanzos con comino y pimentón. Pon el bacalao en trozos encima y tapa 6-8 min a fuego medio."
+    },
+    {
+      "id": "cen-03",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Salmón con arroz y brócoli",
+      "ingredientes": [
+        {
+          "id": "salmon",
+          "g": 150
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 125
+        },
+        {
+          "id": "brocoli",
+          "g": 220
+        },
+        {
+          "id": "yogur_proteico",
+          "g": 125
+        }
+      ],
+      "preparacion": "Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre."
+    },
+    {
+      "id": "cen-04",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Wraps de pollo con verduras y aguacate",
+      "ingredientes": [
+        {
+          "id": "tortilla_integral",
+          "g": 80
+        },
+        {
+          "id": "pechuga_pollo",
+          "g": 170
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 200
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 60
+        },
+        {
+          "id": "aguacate",
+          "g": 20
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10
+        }
+      ],
+      "preparacion": "Saltea el pollo en tiras con pimiento y cebolla, el aceite y especias (fajitas). Rellena las tortillas con el queso batido como salsa y el aguacate."
+    },
+    {
+      "id": "cen-05",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Tortilla de claras y patata con ensalada",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 380
+        },
+        {
+          "id": "huevo",
+          "g": 55
+        },
+        {
+          "id": "patata",
+          "g": 240
+        },
+        {
+          "id": "ensalada",
+          "g": 200
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15
+        }
+      ],
+      "preparacion": "Patata en láminas finas al micro (6-8 min tapada). Cuájala en sartén con claras, huevo y la mitad del aceite. Ensalada aliñada con el resto."
+    },
+    {
+      "id": "cen-06",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Arroz salteado con gambas y sepia",
+      "ingredientes": [
+        {
+          "id": "gambas",
+          "g": 110
+        },
+        {
+          "id": "sepia",
+          "g": 190
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 125
+        },
+        {
+          "id": "salteado_verduras",
+          "g": 200
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15
+        }
+      ],
+      "preparacion": "Saltea sepia y gambas con ajo y el aceite. Añade el salteado de verduras y, al final, el arroz, con un chorrito de soja."
+    },
+    {
+      "id": "cen-07",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Lomo de cerdo con boniato y brócoli",
+      "ingredientes": [
+        {
+          "id": "lomo_cerdo",
+          "g": 200
+        },
+        {
+          "id": "boniato",
+          "g": 220
+        },
+        {
+          "id": "brocoli",
+          "g": 200
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10
+        }
+      ],
+      "preparacion": "Boniato en dados en airfryer (180 °C, 15-18 min) con parte del aceite y pimentón. Lomo a la plancha. Brócoli al vapor con el resto del aceite."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "diario": { "kcal": 1900, "prot": 180, "carb": 175, "grasa": 56, "fibra_min": 30 },
+  "tolerancia": { "kcal_pct": 5, "macro_g": 5 },
+  "momentos": {
+    "desayuno": { "kcal": 400, "prot": 35, "carb": 45, "grasa": 9 },
+    "almuerzo": { "kcal": 600, "prot": 55, "carb": 55, "grasa": 18 },
+    "merienda": { "kcal": 300, "prot": 35, "carb": 25, "grasa": 7 },
+    "cena":     { "kcal": 600, "prot": 55, "carb": 50, "grasa": 22 }
+  }
+}
