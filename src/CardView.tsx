@@ -44,7 +44,7 @@ export function CardView({ card, state, onPress }: CardViewProps) {
         aria-labelledby={headingId}
         aria-pressed={state !== "normal"}
         onClick={onPress}
-        className="absolute inset-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        className="absolute inset-0 rounded-2xl"
       />
       <div className="pointer-events-none relative flex h-6 items-start justify-between">
         {showsKind(card) ? (
@@ -55,7 +55,7 @@ export function CardView({ card, state, onPress }: CardViewProps) {
           <span />
         )}
         {state === "confirmed" && (
-          <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-white">Elegida</span>
+          <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold text-on-accent">Elegida</span>
         )}
       </div>
       <h3 id={headingId} className="pointer-events-none relative mt-1 line-clamp-2 min-h-12 text-base leading-6 font-semibold">

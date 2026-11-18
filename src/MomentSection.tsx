@@ -49,7 +49,7 @@ export function MomentSection({
           )}
         </div>
       </header>
-      <ul className="mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 py-1 pb-2">
+      <ul className="carousel mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 py-1 pb-2">
         {cards.map((card) => (
           <li key={card.id} className="snap-start">
             <CardView card={card} state={stateOf(card)} onPress={() => onCardPress(card.id)} />
@@ -67,8 +67,8 @@ function TickButton({ confirmed, label, onClick }: { confirmed: boolean; label: 
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={`grid size-9 place-items-center rounded-full border-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-        confirmed ? "border-accent bg-accent text-white" : "border-ink text-ink"
+      className={`grid size-9 place-items-center rounded-full border-2 transition-colors ${
+        confirmed ? "border-accent bg-accent text-on-accent" : "border-ink text-ink"
       }`}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5" fill="none" stroke="currentColor" strokeWidth={3}>

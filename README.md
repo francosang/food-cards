@@ -23,6 +23,16 @@ python3 scripts/calcular.py --json
 
 Regenera `docs/tarjetas.md` y `data/tarjetas.json`, y sale con código 1 si alguna Tarjeta queda fuera de tolerancia.
 
+## Iconos de la app
+
+Los PNG de `public/` (manifest, iOS y favicon) se generan desde `public/icon.svg`. Tras cambiar el SVG:
+
+```sh
+npm run icons
+```
+
 ## Publicación
 
 Cada push a `main` ejecuta los tests, construye y publica en GitHub Pages (`.github/workflows/deploy.yml`). Si falla un test, no se publica. En la configuración del repositorio, Pages debe tener como origen "GitHub Actions".
+
+La app es una PWA: se puede instalar y funciona sin conexión tras la primera visita. Al publicar una versión nueva, la app abierta la descarga y se recarga sola (al arrancar o al volver a primer plano).

@@ -2,7 +2,9 @@
 
 /*
  * Color tokens. Utilities like `bg-surface` or `text-protein` read these variables,
- * so a dark theme only needs to redefine them (ticket 09).
+ * so the dark theme below only redefines them. Text/background pairs keep WCAG AA
+ * contrast in both themes (test/theme.test.ts). `--color-page` must match the
+ * theme-color metas in index.html.
  */
 @theme {
   --color-page: #f6f5f2;
@@ -11,9 +13,11 @@
   --color-muted: #6b6862;
   --color-line: #e4e1da;
   --color-tag: #efede8;
-  /* Confirmed Choice: filled tick and confirmed Card. */
+  --color-focus: #1f6f8b;
+  /* Confirmed Choice: filled tick, confirmed Card and its "Elegida" badge (on-accent text). */
   --color-accent: #2f7d4f;
   --color-accent-soft: #e6f4ea;
+  --color-on-accent: #ffffff;
 
   --color-protein: #b4233c;
   --color-protein-soft: #fde7ea;
@@ -23,8 +27,51 @@
   --color-fat-soft: #e1f2f7;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #141311;
+    --color-surface: #201f1c;
+    --color-ink: #f2f0eb;
+    --color-muted: #a9a59d;
+    --color-line: #36342f;
+    --color-tag: #2e2c28;
+    --color-focus: #74c7e2;
+    --color-accent: #6fcf97;
+    --color-accent-soft: #18301f;
+    --color-on-accent: #0f2418;
+
+    --color-protein: #ff8fa0;
+    --color-protein-soft: #3f1a21;
+    --color-carbs: #f2b45c;
+    --color-carbs-soft: #3b2a12;
+    --color-fat: #74c7e2;
+    --color-fat-soft: #12313b;
+  }
+}
+
+:root {
+  /* Native controls and scrollbars follow the system theme too. */
+  color-scheme: light dark;
+}
+
 body {
   background-color: var(--color-page);
   color: var(--color-ink);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyboard users always see where they are, in both themes. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/*
+ * Carousels scroll sideways inside the page, never the page itself. On desktop the
+ * thin scrollbar is what a mouse drags; keyboard focus scrolls the focused Card into view.
+ */
+.carousel {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
 }
