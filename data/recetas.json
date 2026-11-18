@@ -92,30 +92,30 @@
       "id": "des-04",
       "momento": "desayuno",
       "tipo": "dulce",
-      "nombre": "Tortitas de avena y claras con queso batido",
+      "nombre": "Tortitas de avena y claras con plátano",
       "ingredientes": [
         {
           "id": "claras",
-          "g": 100
-        },
-        {
-          "id": "huevo",
-          "g": 55
+          "g": 200
         },
         {
           "id": "avena",
-          "g": 50
+          "g": 30
         },
         {
-          "id": "queso_batido_0",
-          "g": 130
+          "id": "platano",
+          "g": 90
         },
         {
-          "id": "frutos_rojos",
-          "g": 80
+          "id": "crema_cacahuete",
+          "g": 10
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 150
         }
       ],
-      "preparacion": "Bate claras, huevo y avena (o tritúralos). Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el queso batido y los frutos rojos."
+      "preparacion": "Tritura la avena (o usa avena en polvo) y bátela con las claras y la mitad del plátano chafado. Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el resto del plátano en rodajas y la crema de cacahuete. Té o café con la leche."
     },
     {
       "id": "des-05",
@@ -212,7 +212,7 @@
       "ingredientes": [
         {
           "id": "pechuga_pollo",
-          "g": 180
+          "g": 200
         },
         {
           "id": "arroz_vasito",
@@ -220,14 +220,14 @@
         },
         {
           "id": "brocoli",
-          "g": 290
+          "g": 250
         },
         {
           "id": "aceite_oliva",
           "g": 10
         }
       ],
-      "preparacion": "Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo."
+      "preparacion": "Pollo en dados salteado con el aceite y curry (o un chorrito de soja). Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo."
     },
     {
       "id": "alm-02",
@@ -649,29 +649,37 @@
       "preparacion": "Saltea ajo con el aceite, añade espinacas y garbanzos con comino y pimentón. Pon el bacalao en trozos encima y tapa 6-8 min a fuego medio."
     },
     {
-      "id": "cen-03",
+      "id": "cen-08",
       "momento": "cena",
       "tipo": "salado",
-      "nombre": "Salmón con arroz y brócoli",
+      "nombre": "Tostadas con revuelto de claras y tomate",
       "ingredientes": [
         {
-          "id": "salmon",
+          "id": "claras",
+          "g": 350
+        },
+        {
+          "id": "huevo",
+          "g": 55
+        },
+        {
+          "id": "pan_integral",
+          "g": 90
+        },
+        {
+          "id": "tomate",
           "g": 150
         },
         {
-          "id": "arroz_vasito",
-          "g": 125
+          "id": "ensalada",
+          "g": 50
         },
         {
-          "id": "brocoli",
-          "g": 220
-        },
-        {
-          "id": "yogur_proteico",
-          "g": 125
+          "id": "aceite_oliva",
+          "g": 10
         }
       ],
-      "preparacion": "Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre."
+      "preparacion": "Revuelto de claras y huevo en sartén con la mitad del aceite. Tuesta el pan con el tomate rallado y el resto del aceite. Ensalada al lado."
     },
     {
       "id": "cen-04",

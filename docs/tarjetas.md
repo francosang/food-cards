@@ -8,10 +8,10 @@ Pesos: carne y pescado en crudo · arroz y legumbres cocidos · pasta y avena en
 
 | Momento | Objetivo | Rango real de las 7 tarjetas |
 |---|---|---|
-| Desayuno | 400 kcal · P 35 · C 45 · G 9 | 395–417 kcal · P 34–36.8 · C 41.9–45.5 · G 6.1–10.1 · fibra 5.7–8.2 g |
-| Almuerzo | 600 kcal · P 55 · C 55 · G 18 | 599–618 kcal · P 51.8–55.7 · C 53.4–55.2 · G 14.2–19.3 · fibra 8.3–18.9 g |
+| Desayuno | 400 kcal · P 35 · C 45 · G 9 | 395–417 kcal · P 33.5–36.8 · C 42.8–45.6 · G 6.1–10.1 · fibra 5.7–7.5 g |
+| Almuerzo | 600 kcal · P 55 · C 55 · G 18 | 599–618 kcal · P 51.8–57.5 · C 53.2–55.2 · G 14.2–19.3 · fibra 7.2–18.9 g |
 | Merienda | 300 kcal · P 35 · C 25 · G 7 | 302–309 kcal · P 32.5–34.8 · C 23.4–27.4 · G 6–7.9 · fibra 1.4–8.7 g |
-| Cena | 600 kcal · P 55 · C 50 · G 22 | 602–617 kcal · P 52.1–55.3 · C 46.3–51.4 · G 18.6–21.7 · fibra 5.6–16.5 g |
+| Cena | 600 kcal · P 55 · C 50 · G 22 | 601–617 kcal · P 52.1–55.3 · C 46.3–51.4 · G 18.6–21.7 · fibra 5.6–16.5 g |
 
 ## Desayuno — 400 kcal
 
@@ -54,18 +54,18 @@ _Todo a la batidora 30 s. Con fresas congeladas queda tipo smoothie._
 
 _Skyr en un bol, avena por encima, frutos rojos descongelados (30 s de micro) y nueces troceadas._
 
-### Tortitas de avena y claras con queso batido
+### Tortitas de avena y claras con plátano
 `des-04` · dulce
 
-- 100 g claras de huevo pasteurizadas
-- 55 g huevo entero (1 huevo L sin cáscara)
-- 50 g copos de avena
-- 130 g queso fresco batido 0 %
-- 80 g frutos rojos congelados
+- 200 g claras de huevo pasteurizadas
+- 30 g copos de avena
+- 90 g plátano (¾ plátano mediano pelado)
+- 10 g crema de cacahuete 100 %
+- 150 g leche desnatada
 
-**404 kcal** · P 35.2 g · C 41.9 g · G 9.5 g · fibra 8.2 g
+**399 kcal** · P 33.5 g · C 45.6 g · G 8.1 g · fibra 6.0 g
 
-_Bate claras, huevo y avena (o tritúralos). Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el queso batido y los frutos rojos._
+_Tritura la avena (o usa avena en polvo) y bátela con las claras y la mitad del plátano chafado. Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el resto del plátano en rodajas y la crema de cacahuete. Té o café con la leche._
 
 ### Wrap de pavo con café con leche
 `des-05` · salado
@@ -112,14 +112,14 @@ _Tuesta el pan, tomate rallado, el aceite y el atún escurrido por encima. Café
 ### Pollo al curry con arroz y brócoli
 `alm-01` · salado
 
-- 180 g pechuga de pollo
+- 200 g pechuga de pollo
 - 150 g arroz cocido (vasito o congelado)
-- 290 g brócoli congelado
+- 250 g brócoli congelado
 - 10 g aceite de oliva virgen extra (1 cucharada sopera)
 
-**609 kcal** · P 54.0 g · C 54.3 g · G 16.1 g · fibra 8.3 g
+**617 kcal** · P 57.5 g · C 53.2 g · G 16.2 g · fibra 7.2 g
 
-_Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo._
+_Pollo en dados salteado con el aceite y curry (o un chorrito de soja). Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo._
 
 ### Pasta integral con pavo y tomate
 `alm-02` · salado
@@ -318,17 +318,19 @@ _Patata en rodajas al micro (8 min tapada) o airfryer. Merluza encima al horno o
 
 _Saltea ajo con el aceite, añade espinacas y garbanzos con comino y pimentón. Pon el bacalao en trozos encima y tapa 6-8 min a fuego medio._
 
-### Salmón con arroz y brócoli
-`cen-03` · salado
+### Tostadas con revuelto de claras y tomate
+`cen-08` · salado
 
-- 150 g salmón (lomos congelados)
-- 125 g arroz cocido (vasito o congelado) (1 vasito)
-- 220 g brócoli congelado
-- 125 g yogur natural +proteínas 0 % (1 yogur)
+- 350 g claras de huevo pasteurizadas
+- 55 g huevo entero (1 huevo L sin cáscara)
+- 90 g pan de molde 100 % integral (3 rebanadas)
+- 150 g tomate natural
+- 50 g ensalada de bolsa + tomate
+- 10 g aceite de oliva virgen extra (1 cucharada sopera)
 
-**614 kcal** · P 52.4 g · C 49.1 g · G 21.0 g · fibra 6.3 g
+**601 kcal** · P 55.1 g · C 49.9 g · G 19.5 g · fibra 8.6 g
 
-_Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre._
+_Revuelto de claras y huevo en sartén con la mitad del aceite. Tuesta el pan con el tomate rallado y el resto del aceite. Ensalada al lado._
 
 ### Wraps de pollo con verduras y aguacate
 `cen-04` · salado

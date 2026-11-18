@@ -182,47 +182,47 @@
       "id": "des-04",
       "momento": "desayuno",
       "tipo": "dulce",
-      "nombre": "Tortitas de avena y claras con queso batido",
+      "nombre": "Tortitas de avena y claras con plátano",
       "ingredientes": [
         {
           "id": "claras",
-          "g": 100,
+          "g": 200,
           "nombre": "Claras de huevo pasteurizadas",
           "categoria": "proteina"
         },
         {
-          "id": "huevo",
-          "g": 55,
-          "nombre": "Huevo entero",
-          "categoria": "proteina",
-          "unidad_casera": "1 huevo L sin cáscara"
-        },
-        {
           "id": "avena",
-          "g": 50,
+          "g": 30,
           "nombre": "Copos de avena",
           "categoria": "cereal"
         },
         {
-          "id": "queso_batido_0",
-          "g": 130,
-          "nombre": "Queso fresco batido 0 %",
-          "categoria": "lacteo"
+          "id": "platano",
+          "g": 90,
+          "nombre": "Plátano",
+          "categoria": "fruta",
+          "unidad_casera": "¾ plátano mediano pelado"
         },
         {
-          "id": "frutos_rojos",
-          "g": 80,
-          "nombre": "Frutos rojos congelados",
-          "categoria": "fruta"
+          "id": "crema_cacahuete",
+          "g": 10,
+          "nombre": "Crema de cacahuete 100 %",
+          "categoria": "grasa"
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 150,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
         }
       ],
-      "preparacion": "Bate claras, huevo y avena (o tritúralos). Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el queso batido y los frutos rojos.",
+      "preparacion": "Tritura la avena (o usa avena en polvo) y bátela con las claras y la mitad del plátano chafado. Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el resto del plátano en rodajas y la crema de cacahuete. Té o café con la leche.",
       "nutricion": {
-        "kcal": 404,
-        "prot": 35.2,
-        "carb": 41.9,
-        "grasa": 9.5,
-        "fibra": 8.2
+        "kcal": 399,
+        "prot": 33.5,
+        "carb": 45.6,
+        "grasa": 8.1,
+        "fibra": 6.0
       }
     },
     {
@@ -376,7 +376,7 @@
       "ingredientes": [
         {
           "id": "pechuga_pollo",
-          "g": 180,
+          "g": 200,
           "nombre": "Pechuga de pollo",
           "categoria": "proteina"
         },
@@ -388,7 +388,7 @@
         },
         {
           "id": "brocoli",
-          "g": 290,
+          "g": 250,
           "nombre": "Brócoli congelado",
           "categoria": "verdura"
         },
@@ -400,13 +400,13 @@
           "unidad_casera": "1 cucharada sopera"
         }
       ],
-      "preparacion": "Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo.",
+      "preparacion": "Pollo en dados salteado con el aceite y curry (o un chorrito de soja). Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo.",
       "nutricion": {
-        "kcal": 609,
-        "prot": 54.0,
-        "carb": 54.3,
-        "grasa": 16.1,
-        "fibra": 8.3
+        "kcal": 617,
+        "prot": 57.5,
+        "carb": 53.2,
+        "grasa": 16.2,
+        "fibra": 7.2
       }
     },
     {
@@ -1099,45 +1099,58 @@
       }
     },
     {
-      "id": "cen-03",
+      "id": "cen-08",
       "momento": "cena",
       "tipo": "salado",
-      "nombre": "Salmón con arroz y brócoli",
+      "nombre": "Tostadas con revuelto de claras y tomate",
       "ingredientes": [
         {
-          "id": "salmon",
-          "g": 150,
-          "nombre": "Salmón (lomos congelados)",
-          "categoria": "pescado"
+          "id": "claras",
+          "g": 350,
+          "nombre": "Claras de huevo pasteurizadas",
+          "categoria": "proteina"
         },
         {
-          "id": "arroz_vasito",
-          "g": 125,
-          "nombre": "Arroz cocido (vasito o congelado)",
+          "id": "huevo",
+          "g": 55,
+          "nombre": "Huevo entero",
+          "categoria": "proteina",
+          "unidad_casera": "1 huevo L sin cáscara"
+        },
+        {
+          "id": "pan_integral",
+          "g": 90,
+          "nombre": "Pan de molde 100 % integral",
           "categoria": "cereal",
-          "unidad_casera": "1 vasito"
+          "unidad_casera": "3 rebanadas"
         },
         {
-          "id": "brocoli",
-          "g": 220,
-          "nombre": "Brócoli congelado",
+          "id": "tomate",
+          "g": 150,
+          "nombre": "Tomate natural",
           "categoria": "verdura"
         },
         {
-          "id": "yogur_proteico",
-          "g": 125,
-          "nombre": "Yogur natural +proteínas 0 %",
-          "categoria": "lacteo",
-          "unidad_casera": "1 yogur"
+          "id": "ensalada",
+          "g": 50,
+          "nombre": "Ensalada de bolsa + tomate",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
-      "preparacion": "Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre.",
+      "preparacion": "Revuelto de claras y huevo en sartén con la mitad del aceite. Tuesta el pan con el tomate rallado y el resto del aceite. Ensalada al lado.",
       "nutricion": {
-        "kcal": 614,
-        "prot": 52.4,
-        "carb": 49.1,
-        "grasa": 21.0,
-        "fibra": 6.3
+        "kcal": 601,
+        "prot": 55.1,
+        "carb": 49.9,
+        "grasa": 19.5,
+        "fibra": 8.6
       }
     },
     {
