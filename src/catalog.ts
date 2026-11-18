@@ -29,11 +29,18 @@ export interface Goal {
 /** "dulce" / "salado". Shown only on breakfast and snack Cards. */
 export type CardKind = "sweet" | "savory";
 
+export const KIND_LABELS: Record<CardKind, string> = { sweet: "Dulce", savory: "Salado" };
+
 export interface Ingredient {
   id: string;
   name: string;
   grams: number;
   category: string;
+  /**
+   * The grams in household units ("2 rebanadas", "½ cucharada sopera"), precomputed by
+   * `scripts/calcular.py --json`. Absent when the ingredient has no unit or it isn't a multiple of ¼.
+   */
+  householdUnit?: string;
 }
 
 export interface Card {
@@ -68,7 +75,7 @@ export interface CardsFileCard {
   momento: string;
   tipo: string;
   nombre: string;
-  ingredientes: { id: string; g: number; nombre: string; categoria: string }[];
+  ingredientes: { id: string; g: number; nombre: string; categoria: string; unidad_casera?: string }[];
   preparacion: string;
   nutricion: FileNutrition & { fibra: number };
 }
@@ -117,6 +124,7 @@ function toCard(card: CardsFileCard, moment: Moment): Card {
       name: i.nombre,
       grams: i.g,
       category: i.categoria,
+      ...(i.unidad_casera ? { householdUnit: i.unidad_casera } : {}),
     })),
     preparation: card.preparacion,
     nutrition: { ...toNutrition(card.nutricion), fiber: card.nutricion.fibra },

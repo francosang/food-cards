@@ -67,7 +67,8 @@
           "id": "platano",
           "g": 60,
           "nombre": "Plátano",
-          "categoria": "fruta"
+          "categoria": "fruta",
+          "unidad_casera": "½ plátano mediano pelado"
         },
         {
           "id": "nueces",
@@ -193,7 +194,8 @@
           "id": "huevo",
           "g": 55,
           "nombre": "Huevo entero",
-          "categoria": "proteina"
+          "categoria": "proteina",
+          "unidad_casera": "1 huevo L sin cáscara"
         },
         {
           "id": "avena",
@@ -233,7 +235,8 @@
           "id": "tortilla_integral",
           "g": 80,
           "nombre": "Tortillas de trigo integrales (wrap)",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "2 tortillas"
         },
         {
           "id": "pavo_lonchas",
@@ -285,7 +288,8 @@
           "id": "huevo",
           "g": 55,
           "nombre": "Huevo entero",
-          "categoria": "proteina"
+          "categoria": "proteina",
+          "unidad_casera": "1 huevo L sin cáscara"
         },
         {
           "id": "pan_integral",
@@ -325,13 +329,15 @@
           "id": "pan_integral",
           "g": 75,
           "nombre": "Pan de molde 100 % integral",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "2½ rebanadas"
         },
         {
           "id": "atun_natural",
           "g": 112,
           "nombre": "Atún claro al natural (escurrido)",
-          "categoria": "pescado"
+          "categoria": "pescado",
+          "unidad_casera": "2 latas pequeñas escurridas"
         },
         {
           "id": "tomate",
@@ -343,7 +349,8 @@
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         },
         {
           "id": "leche_desnatada",
@@ -389,7 +396,8 @@
           "id": "aceite_oliva",
           "g": 10,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
       "preparacion": "Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo.",
@@ -435,7 +443,8 @@
           "id": "aceite_oliva",
           "g": 15,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1½ cucharadas soperas"
         }
       ],
       "preparacion": "Cuece la pasta. Mientras, saltea el pavo en tiras y el calabacín en dados con el aceite, añade el tomate triturado y orégano 5 min. Mezcla con la pasta.",
@@ -475,7 +484,8 @@
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         }
       ],
       "preparacion": "Patata en dados al micro (8 min tapada) o airfryer (15 min). Judías verdes al vapor o micro. Lomo a la plancha con el aceite, ajo y perejil.",
@@ -527,7 +537,8 @@
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         }
       ],
       "preparacion": "Sofríe pimiento y cebolla con el aceite, añade la carne, comino, pimentón y chile. Agrega tomate y alubias escurridas y cuece 10 min. Sirve con el arroz.",
@@ -555,13 +566,15 @@
           "id": "atun_natural",
           "g": 112,
           "nombre": "Atún claro al natural (escurrido)",
-          "categoria": "pescado"
+          "categoria": "pescado",
+          "unidad_casera": "2 latas pequeñas escurridas"
         },
         {
           "id": "huevo",
           "g": 55,
           "nombre": "Huevo entero",
-          "categoria": "proteina"
+          "categoria": "proteina",
+          "unidad_casera": "1 huevo L sin cáscara"
         },
         {
           "id": "ensalada",
@@ -579,13 +592,15 @@
           "id": "pan_integral",
           "g": 30,
           "nombre": "Pan de molde 100 % integral",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "1 rebanada"
         },
         {
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         }
       ],
       "preparacion": "Mezcla garbanzos enjuagados, atún escurrido, huevo cocido, ensalada, pimiento y cebolla picados. Aliña con aceite y vinagre. El pan, aparte.",
@@ -631,7 +646,8 @@
           "id": "aceite_oliva",
           "g": 10,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
       "preparacion": "Bacalao al horno o airfryer (180 °C, 12-15 min) con ajo y pimentón. Espinacas salteadas con el aceite y ajo. Arroz 1 min de micro, con un poco de tomate si quieres.",
@@ -683,7 +699,8 @@
           "id": "aceite_oliva",
           "g": 10,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
       "preparacion": "Sofríe el pollo en dados con el aceite, añade menestra, patata en dados, tomate, pimentón y un vaso de agua. 15 min y añade las lentejas enjuagadas 5 min al final.",
@@ -705,7 +722,8 @@
           "id": "skyr",
           "g": 300,
           "nombre": "Skyr natural",
-          "categoria": "lacteo"
+          "categoria": "lacteo",
+          "unidad_casera": "2 tarrinas"
         },
         {
           "id": "manzana",
@@ -785,13 +803,15 @@
           "id": "whey",
           "g": 30,
           "nombre": "Proteína whey (en polvo)",
-          "categoria": "proteina"
+          "categoria": "proteina",
+          "unidad_casera": "1 cacito"
         },
         {
           "id": "platano",
           "g": 60,
           "nombre": "Plátano",
-          "categoria": "fruta"
+          "categoria": "fruta",
+          "unidad_casera": "½ plátano mediano pelado"
         },
         {
           "id": "crema_cacahuete",
@@ -825,7 +845,8 @@
           "id": "kiwi",
           "g": 80,
           "nombre": "Kiwi",
-          "categoria": "fruta"
+          "categoria": "fruta",
+          "unidad_casera": "1 kiwi pelado"
         },
         {
           "id": "lino_molido",
@@ -859,7 +880,8 @@
           "id": "pan_integral",
           "g": 45,
           "nombre": "Pan de molde 100 % integral",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "1½ rebanadas"
         },
         {
           "id": "pavo_lonchas",
@@ -877,13 +899,15 @@
           "id": "yogur_proteico",
           "g": 125,
           "nombre": "Yogur natural +proteínas 0 %",
-          "categoria": "lacteo"
+          "categoria": "lacteo",
+          "unidad_casera": "1 yogur"
         },
         {
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         }
       ],
       "preparacion": "Bocadillo de pan de molde integral con tomate, un hilo de aceite y pavo. Yogur de postre.",
@@ -905,13 +929,15 @@
           "id": "tortitas_maiz",
           "g": 24,
           "nombre": "Tortitas de maíz",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "3 tortitas"
         },
         {
           "id": "atun_natural",
           "g": 112,
           "nombre": "Atún claro al natural (escurrido)",
-          "categoria": "pescado"
+          "categoria": "pescado",
+          "unidad_casera": "2 latas pequeñas escurridas"
         },
         {
           "id": "queso_batido_proteinas",
@@ -929,7 +955,8 @@
           "id": "aceite_oliva",
           "g": 5,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "½ cucharada sopera"
         }
       ],
       "preparacion": "Mezcla el atún con el queso batido, pimienta y orégano. Úntalo sobre las tortitas y acompaña con tomate cherry.",
@@ -969,7 +996,8 @@
           "id": "pan_integral",
           "g": 15,
           "nombre": "Pan de molde 100 % integral",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "½ rebanada"
         }
       ],
       "preparacion": "Bastones de zanahoria para mojar en el hummus, rollitos de pavo y, si cabe, una tostada.",
@@ -1009,7 +1037,8 @@
           "id": "aceite_oliva",
           "g": 15,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1½ cucharadas soperas"
         }
       ],
       "preparacion": "Patata en rodajas al micro (8 min tapada) o airfryer. Merluza encima al horno o airfryer 12 min con ajo, perejil y el aceite. Judías al vapor.",
@@ -1049,13 +1078,15 @@
           "id": "pan_integral",
           "g": 60,
           "nombre": "Pan de molde 100 % integral",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "2 rebanadas"
         },
         {
           "id": "aceite_oliva",
           "g": 15,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1½ cucharadas soperas"
         }
       ],
       "preparacion": "Saltea ajo con el aceite, añade espinacas y garbanzos con comino y pimentón. Pon el bacalao en trozos encima y tapa 6-8 min a fuego medio.",
@@ -1083,7 +1114,8 @@
           "id": "arroz_vasito",
           "g": 125,
           "nombre": "Arroz cocido (vasito o congelado)",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "1 vasito"
         },
         {
           "id": "brocoli",
@@ -1095,7 +1127,8 @@
           "id": "yogur_proteico",
           "g": 125,
           "nombre": "Yogur natural +proteínas 0 %",
-          "categoria": "lacteo"
+          "categoria": "lacteo",
+          "unidad_casera": "1 yogur"
         }
       ],
       "preparacion": "Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre.",
@@ -1117,7 +1150,8 @@
           "id": "tortilla_integral",
           "g": 80,
           "nombre": "Tortillas de trigo integrales (wrap)",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "2 tortillas"
         },
         {
           "id": "pechuga_pollo",
@@ -1147,7 +1181,8 @@
           "id": "aceite_oliva",
           "g": 10,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
       "preparacion": "Saltea el pollo en tiras con pimiento y cebolla, el aceite y especias (fajitas). Rellena las tortillas con el queso batido como salsa y el aguacate.",
@@ -1175,7 +1210,8 @@
           "id": "huevo",
           "g": 55,
           "nombre": "Huevo entero",
-          "categoria": "proteina"
+          "categoria": "proteina",
+          "unidad_casera": "1 huevo L sin cáscara"
         },
         {
           "id": "patata",
@@ -1193,7 +1229,8 @@
           "id": "aceite_oliva",
           "g": 15,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1½ cucharadas soperas"
         }
       ],
       "preparacion": "Patata en láminas finas al micro (6-8 min tapada). Cuájala en sartén con claras, huevo y la mitad del aceite. Ensalada aliñada con el resto.",
@@ -1227,7 +1264,8 @@
           "id": "arroz_vasito",
           "g": 125,
           "nombre": "Arroz cocido (vasito o congelado)",
-          "categoria": "cereal"
+          "categoria": "cereal",
+          "unidad_casera": "1 vasito"
         },
         {
           "id": "salteado_verduras",
@@ -1239,7 +1277,8 @@
           "id": "aceite_oliva",
           "g": 15,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1½ cucharadas soperas"
         }
       ],
       "preparacion": "Saltea sepia y gambas con ajo y el aceite. Añade el salteado de verduras y, al final, el arroz, con un chorrito de soja.",
@@ -1279,7 +1318,8 @@
           "id": "aceite_oliva",
           "g": 10,
           "nombre": "Aceite de oliva virgen extra",
-          "categoria": "grasa"
+          "categoria": "grasa",
+          "unidad_casera": "1 cucharada sopera"
         }
       ],
       "preparacion": "Boniato en dados en airfryer (180 °C, 15-18 min) con parte del aceite y pimentón. Lomo a la plancha. Brócoli al vapor con el resto del aceite.",
