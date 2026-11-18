@@ -6,7 +6,7 @@ import type { CardsFile } from "./catalog";
 import { systemClock } from "./clock/Clock";
 import { ClockProvider } from "./clock/ClockProvider";
 import { DayRepositoryProvider } from "./days/DayRepositoryProvider";
-import { createMemoryDayRepository } from "./days/memoryDayRepository";
+import { createLocalStorageDayRepository } from "./days/localStorageDayRepository";
 import cardsFile from "../data/tarjetas.json";
 import "./index.css";
 
@@ -22,8 +22,8 @@ registerSW({
   },
 });
 
-// In memory for now: Choices are lost on reload until ticket 03 swaps in localStorage.
-const repository = createMemoryDayRepository();
+// Days live in this browser's localStorage (ADR-0001); the UI tests inject the in-memory one.
+const repository = createLocalStorageDayRepository();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
