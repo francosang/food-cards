@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- App icon: three fanned Cards in the macro colours. Source for the PNGs (npm run icons). -->
+  <rect width="512" height="512" rx="112" fill="#1c1b19"/>
+  <g transform="translate(256 278) scale(1.35)">
+    <rect x="-92" y="-138" width="184" height="236" rx="28" fill="#1f6f8b" transform="rotate(16)"/>
+    <rect x="-92" y="-138" width="184" height="236" rx="28" fill="#a15c00" transform="rotate(-16)"/>
+    <g>
+      <rect x="-92" y="-138" width="184" height="236" rx="28" fill="#ffffff"/>
+      <rect x="-60" y="-106" width="120" height="18" rx="9" fill="#e4e1da"/>
+      <rect x="-60" y="-70" width="84" height="40" rx="12" fill="#1c1b19"/>
+      <rect x="-60" y="38" width="36" height="22" rx="11" fill="#b4233c"/>
+      <rect x="-18" y="38" width="36" height="22" rx="11" fill="#a15c00"/>
+      <rect x="24" y="38" width="36" height="22" rx="11" fill="#1f6f8b"/>
+    </g>
+  </g>
+</svg>
