@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef } from "react";
 import { KIND_LABELS, MOMENT_LABELS, type Card } from "./catalog";
 import { formatGrams, formatKcal } from "./format";
+import { ingredientIcon } from "./ingredientIcons";
 
 const NUTRIENT_CHIPS = [
   { key: "protein", label: "Proteína", className: "bg-protein-soft text-protein" },
@@ -85,8 +86,12 @@ export function CardDetailsDialog({ card, onClose }: CardDetailsDialogProps) {
         </h3>
         <ul aria-labelledby={ingredientsId} className="mt-2 divide-y divide-line">
           {card.ingredients.map((ingredient) => (
-            <li key={ingredient.id} className="flex items-baseline justify-between gap-3 py-2 text-sm">
-              <span>{ingredient.name}</span>
+            <li key={ingredient.id} className="flex items-center justify-between gap-3 py-2 text-sm">
+              <span className="flex items-center gap-2">
+                {/* Decorative: the ingredient's name is right next to it. */}
+                <img src={ingredientIcon(ingredient)} alt="" className="size-6 shrink-0" />
+                <span>{ingredient.name}</span>
+              </span>
               <span className="shrink-0 text-right">
                 <span className="font-semibold">{formatGrams(ingredient.grams)} g</span>
                 {ingredient.householdUnit && <span className="block text-xs text-muted">{ingredient.householdUnit}</span>}

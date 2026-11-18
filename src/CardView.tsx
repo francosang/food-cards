@@ -2,6 +2,7 @@ import { useState } from "react";
 import { KIND_LABELS, type Card } from "./catalog";
 import { CardDetailsDialog } from "./CardDetailsDialog";
 import { formatGrams, formatKcal } from "./format";
+import { ingredientIcon, mainIngredients } from "./ingredientIcons";
 
 const MACRO_CHIPS = [
   { key: "protein", short: "P", label: "Proteína", className: "bg-protein-soft text-protein" },
@@ -64,10 +65,10 @@ export function CardView({ card, state, onPress }: CardViewProps) {
       <h3 id={headingId} className="pointer-events-none relative mt-1 line-clamp-2 min-h-12 text-base leading-6 font-semibold">
         {card.name}
       </h3>
-      <p className="pointer-events-none relative mt-2 text-sm text-muted">
+      <p className="pointer-events-none relative mt-1 text-sm text-muted">
         <span className="text-4xl font-bold tracking-tight text-ink">{formatKcal(card.nutrition.kcal)}</span> kcal
       </p>
-      <ul className="pointer-events-none relative mt-3 flex gap-2" aria-label="Macros">
+      <ul className="pointer-events-none relative mt-2 flex gap-2" aria-label="Macros">
         {MACRO_CHIPS.map(({ key, short, label, className }) => {
           const grams = formatGrams(card.nutrition[key]);
           return (
@@ -80,6 +81,13 @@ export function CardView({ card, state, onPress }: CardViewProps) {
             </li>
           );
         })}
+      </ul>
+      <ul className="pointer-events-none relative mt-2 flex h-6 gap-1.5" aria-label="Ingredientes principales">
+        {mainIngredients(card).map((ingredient) => (
+          <li key={ingredient.id}>
+            <img src={ingredientIcon(ingredient)} alt={ingredient.name} className="size-6" />
+          </li>
+        ))}
       </ul>
       {/* Reserved slot, stacked above the Card's button, so showing "Ver detalles" never resizes the Card. */}
       <div className="pointer-events-none relative mt-auto flex h-9 items-end">

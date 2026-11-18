@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { mkdtempSync, readFileSync, existsSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { build } from "vite";
@@ -118,6 +118,17 @@ describe("PWA build output", () => {
     expect(assets.length).toBeGreaterThan(0);
     for (const url of ["index.html", "manifest.webmanifest", ...assets, ...manifest().icons.map((i) => i.src)]) {
       expect(sw, `precache entry for ${url}`).toContain(`"${url}"`);
+    }
+  });
+
+  it("ships the ingredient icons as their own files and precaches them, so they show offline", () => {
+    const sw = read("sw.js");
+    const icons = readdirSync(join(outDir, "assets")).filter((file) => /_flat.*\.svg$/.test(file));
+
+    expect(icons.length).toBeGreaterThanOrEqual(30);
+    for (const icon of icons) {
+      expect(sw, `precache entry for ${icon}`).toContain(`"assets/${icon}"`);
+      expect(read(`assets/${icon}`)).not.toMatch(/<script|\son\w+=/i);
     }
   });
 

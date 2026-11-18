@@ -6,6 +6,10 @@ import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   base: "/food-cards/",
+  build: {
+    // Ingredient icons are emitted as hashed files (precached by the service worker) instead of being inlined into the bundle.
+    assetsInlineLimit: (filePath) => (filePath.includes("/src/assets/ingredients/") ? false : undefined),
+  },
   plugins: [
     react(),
     tailwindcss(),

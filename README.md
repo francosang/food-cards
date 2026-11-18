@@ -31,6 +31,10 @@ Los PNG de `public/` (manifest, iOS y favicon) se generan desde `public/icon.svg
 npm run icons
 ```
 
+## Iconos de ingredientes
+
+Los iconos de ingredientes de `src/assets/ingredients/` son [Fluent Emoji](https://github.com/microsoft/fluentui-emoji) en estilo Flat, de Microsoft, con licencia MIT (`src/assets/ingredients/LICENSE`). Solo se incluyen los que se usan, sin modificar. El mapeo ingrediente → icono y el icono de respaldo de cada categoría están en `src/ingredientIcons.ts`: un ingrediente sin entrada usa el de su categoría. Para añadir uno, se copia `assets/<Nombre>/Flat/<nombre>_flat.svg` del repositorio de Fluent Emoji y se añade al mapeo.
+
 ## Publicación
 
 Cada push a `main` ejecuta los tests, construye y publica en GitHub Pages (`.github/workflows/deploy.yml`). Si falla un test, no se publica. En la configuración del repositorio, Pages debe tener como origen "GitHub Actions".
