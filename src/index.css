@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/*
+ * Color tokens. Utilities like `bg-surface` or `text-protein` read these variables,
+ * so a dark theme only needs to redefine them (ticket 09).
+ */
+@theme {
+  --color-page: #f6f5f2;
+  --color-surface: #ffffff;
+  --color-ink: #1c1b19;
+  --color-muted: #6b6862;
+  --color-line: #e4e1da;
+  --color-tag: #efede8;
+
+  --color-protein: #b4233c;
+  --color-protein-soft: #fde7ea;
+  --color-carbs: #a15c00;
+  --color-carbs-soft: #fdf0d9;
+  --color-fat: #1f6f8b;
+  --color-fat-soft: #e1f2f7;
+}
+
+body {
+  background-color: var(--color-page);
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
