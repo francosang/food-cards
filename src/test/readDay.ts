@@ -1,16 +1,2 @@
-import type { Day, DayRepository } from "../days/DayRepository";
-
-/** Reads a Day through the repository's public interface (its first emission). */
-export function readDay(repository: DayRepository, date: string): Promise<Day | null> {
-  return new Promise((resolve) => {
-    let unsubscribe: (() => void) | undefined;
-    let done = false;
-    unsubscribe = repository.subscribeDay(date, (day) => {
-      if (done) return;
-      done = true;
-      resolve(day);
-      unsubscribe?.();
-    });
-    if (done) unsubscribe();
-  });
-}
+// Tests read Days the same way the app does: through the repository's public interface.
+export { readDay } from "../days/readDay";

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { MOMENTS, parseCatalog, type Card, type CardsFile, type Moment } from "./catalog";
 import { useToday } from "./clock/ClockProvider";
 import { useDay, useDayRepository } from "./days/DayRepositoryProvider";
+import { readDay } from "./days/readDay";
 import { HistoryView } from "./HistoryView";
 import { MomentSection } from "./MomentSection";
 import { ProgressHeader } from "./ProgressHeader";
@@ -61,7 +62,15 @@ export function App({ cardsFile }: AppProps) {
     const card = catalog.cards[moment].find((c) => c.id === selections[moment]);
     if (!card) return;
     select(moment, undefined, date);
-    void repository.confirmChoice(date, moment, card, catalog.goal);
+    if (date === today) {
+      void repository.confirmChoice(date, moment, card, catalog.goal);
+      return;
+    }
+    // The new Day is not on screen yet, so read it first: a Choice made for this Moment
+    // from another tab stays, and the view just moves to the new Day.
+    void readDay(repository, date).then((newDay) => {
+      if (!newDay?.choices[moment]) return repository.confirmChoice(date, moment, card, catalog.goal);
+    });
   }
 
   // The Home's state stays here while the Historial is open, so Selections survive a visit.

@@ -2,7 +2,7 @@ import { act, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { createFakeClock, returnToForeground } from "./test/fakeClock";
 import { renderApp } from "./test/renderApp";
-import { cardFixture, cardsFileFixture } from "./test/fixtures";
+import { cardFixture, cardsFileFixture, choiceFixture, goalFixture } from "./test/fixtures";
 import { readDay } from "./test/readDay";
 
 const TODAY = "2026-11-18";
@@ -14,6 +14,12 @@ const cardsFile = cardsFileFixture([
     momento: "desayuno",
     nombre: "Porridge",
     nutricion: { kcal: 408, prot: 34, carb: 44.1, grasa: 10.1, fibra: 5.7 },
+  }),
+  cardFixture({
+    id: "des-02",
+    momento: "desayuno",
+    nombre: "Tostadas con pavo",
+    nutricion: { kcal: 395, prot: 36, carb: 43, grasa: 8.4, fibra: 6 },
   }),
   cardFixture({
     id: "cen-01",
@@ -73,6 +79,24 @@ describe("Changing Día without a midnight timer", () => {
     expect((await readDay(repository, TODAY))?.choices).toEqual({
       breakfast: expect.objectContaining({ id: "des-01" }),
     });
+  });
+
+  it("confirming after midnight a Momento another tab already chose in the new Día keeps that Elección and shows it", async () => {
+    const clock = createFakeClock(TODAY);
+    const { user, repository } = renderApp({ cardsFile, clock });
+    await user.click(card("Porridge"));
+    await repository.confirmChoice(TOMORROW, "breakfast", choiceFixture(cardsFile, "des-02"), goalFixture);
+
+    clock.set(TOMORROW);
+    await user.click(screen.getByRole("button", { name: "Confirmar desayuno" }));
+
+    expect(card("Tostadas con pavo")).toHaveAttribute("aria-pressed", "true");
+    expect(card("Porridge")).toHaveAttribute("aria-pressed", "false");
+    expect(progress()).toHaveTextContent("395 / 1.900 kcal");
+    expect((await readDay(repository, TOMORROW))?.choices).toEqual({
+      breakfast: expect.objectContaining({ id: "des-02" }),
+    });
+    expect(await readDay(repository, TODAY)).toBeNull();
   });
 
   it("an unconfirmed Selección disappears when the day changes", async () => {
