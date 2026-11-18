@@ -1,6 +1,8 @@
 import { beforeEach } from "vitest";
+import type { Card, Goal } from "../catalog";
+import type { Day } from "./DayRepository";
 import { describeDayRepositoryContract, describeDurableDayRepositoryContract } from "./dayRepositoryContract";
-import { createLocalStorageDayRepository, dayStorageKey } from "./localStorageDayRepository";
+import { createLocalStorageDayRepository, dayStorageKey, SCHEMA_VERSION } from "./localStorageDayRepository";
 
 beforeEach(() => {
   localStorage.clear();
@@ -20,11 +22,31 @@ describeDurableDayRepositoryContract("localStorage", {
     browser.entries.set(dayStorageKey(date), '{"schemaVersion":1,"day":');
   },
   storeUnknownSchemaDay: (browser, date) => {
-    // Same envelope, newer version: only the version says it can't be read.
-    const day = { date, goal: { daily: {}, moments: {} }, choices: { breakfast: { cardId: "des-01", grams: {} } } };
-    browser.entries.set(dayStorageKey(date), JSON.stringify({ schemaVersion: 2, day }));
+    // A Day valid in every other way: only the version says it can't be read.
+    const day: Day = { date, goal: GOAL, choices: { breakfast: PORRIDGE } };
+    browser.entries.set(dayStorageKey(date), JSON.stringify({ schemaVersion: SCHEMA_VERSION + 1, day }));
   },
 });
+
+const GOAL: Goal = {
+  daily: { kcal: 1900, protein: 180, carbs: 175, fat: 56, fiberMin: 30 },
+  moments: {
+    breakfast: { kcal: 400, protein: 35, carbs: 45, fat: 9 },
+    lunch: { kcal: 600, protein: 55, carbs: 55, fat: 18 },
+    snack: { kcal: 300, protein: 35, carbs: 25, fat: 7 },
+    dinner: { kcal: 600, protein: 55, carbs: 50, fat: 22 },
+  },
+};
+
+const PORRIDGE: Card = {
+  id: "des-01",
+  moment: "breakfast",
+  kind: "sweet",
+  name: "Porridge",
+  ingredients: [{ id: "avena", name: "Copos de avena", grams: 40, category: "cereal" }],
+  preparation: "Mezclar y calentar.",
+  nutrition: { kcal: 400, protein: 35, carbs: 45, fat: 9, fiber: 5 },
+};
 
 interface FakeTab {
   window: EventTarget;

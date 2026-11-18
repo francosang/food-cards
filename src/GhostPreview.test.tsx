@@ -1,8 +1,7 @@
 import { act, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { parseCatalog } from "./catalog";
 import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
-import { cardFixture, cardsFileFixture } from "./test/fixtures";
+import { cardFixture, cardsFileFixture, choiceFixture, goalFixture } from "./test/fixtures";
 
 // Daily Objetivo of the fixture: 1.900 kcal, P 180, C 175, G 56.
 const cardsFile = cardsFileFixture([
@@ -107,11 +106,10 @@ describe("Ghost preview of the unconfirmed Selecciones", () => {
 
   it("ignores the Selección of a Momento confirmed from elsewhere, so it is not counted twice", async () => {
     const { user, repository } = renderApp({ cardsFile });
-    const { cards, goal } = parseCatalog(cardsFile);
     await user.click(card("Porridge"));
     await user.click(card("Arroz con pollo"));
 
-    await act(() => repository.confirmChoice(DEFAULT_TODAY, "lunch", cards.lunch[0], goal));
+    await act(() => repository.confirmChoice(DEFAULT_TODAY, "lunch", choiceFixture(cardsFile, "alm-01"), goalFixture));
 
     expect(progress()).toHaveTextContent("601 / 1.900 kcal");
     expect(bar("Kcal")).toHaveAttribute("aria-valuetext", "601 / 1.900 kcal, +408 kcal previstas");

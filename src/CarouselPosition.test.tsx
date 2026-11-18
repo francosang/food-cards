@@ -1,10 +1,9 @@
 import { screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { parseCatalog } from "./catalog";
 import type { DayRepository } from "./days/DayRepository";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
 import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
-import { cardFixture, cardsFileFixture } from "./test/fixtures";
+import { cardFixture, cardsFileFixture, choiceFixture, goalFixture } from "./test/fixtures";
 
 // renderApp injects a fake clock stuck on this date.
 const TODAY = DEFAULT_TODAY;
@@ -19,7 +18,6 @@ const cardsFile = cardsFileFixture([
   cardFixture({ id: "cen-01", momento: "cena", nombre: "Salmón con patata" }),
   cardFixture({ id: "cen-02", momento: "cena", nombre: "Merluza con verduras" }),
 ]);
-const catalog = parseCatalog(cardsFile);
 
 // jsdom has no layout: lay the Cards of each carousel out in a row, one every CARD_PITCH px.
 const CARD_PITCH = 268;
@@ -41,8 +39,8 @@ function carousel(moment: string) {
 describe("Carousel position on load", () => {
   it("scrolls the carousel of each Momento with an Elección to its Tarjeta; the others start at the first", async () => {
     const repository = createMemoryDayRepository();
-    await repository.confirmChoice(TODAY, "breakfast", catalog.cards.breakfast[2], catalog.goal);
-    await repository.confirmChoice(TODAY, "dinner", catalog.cards.dinner[1], catalog.goal);
+    await repository.confirmChoice(TODAY, "breakfast", choiceFixture(cardsFile, "des-03"), goalFixture);
+    await repository.confirmChoice(TODAY, "dinner", choiceFixture(cardsFile, "cen-02"), goalFixture);
 
     renderApp({ cardsFile, repository });
 
@@ -55,7 +53,7 @@ describe("Carousel position on load", () => {
 
   it("also does it when the Día arrives after the first render, as it will from Firestore", async () => {
     const repository = createMemoryDayRepository();
-    await repository.confirmChoice(TODAY, "lunch", catalog.cards.lunch[1], catalog.goal);
+    await repository.confirmChoice(TODAY, "lunch", choiceFixture(cardsFile, "alm-02"), goalFixture);
 
     renderApp({ cardsFile, repository: delayFirstEmission(repository) });
 

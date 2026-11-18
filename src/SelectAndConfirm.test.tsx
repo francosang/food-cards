@@ -1,9 +1,8 @@
 import { act, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { parseCatalog } from "./catalog";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
 import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
-import { cardFixture, cardsFileFixture } from "./test/fixtures";
+import { cardFixture, cardsFileFixture, choiceFixture, goalFixture } from "./test/fixtures";
 import { readDay } from "./test/readDay";
 
 // renderApp injects a fake clock stuck on this date.
@@ -192,10 +191,9 @@ describe("Selecting and confirming a Tarjeta", () => {
 
   it("shows the Elecciones already stored for today as confirmed on mount, against the Día's Objetivo", async () => {
     const repository = createMemoryDayRepository();
-    const stored = parseCatalog(cardsFile);
-    const oldGoal = { ...stored.goal, daily: { ...stored.goal.daily, kcal: 2000 } };
-    await repository.confirmChoice(TODAY, "dinner", stored.cards.dinner[1], oldGoal);
-    await repository.confirmChoice("2026-11-17", "breakfast", stored.cards.breakfast[0], stored.goal);
+    const oldGoal = { ...goalFixture, daily: { ...goalFixture.daily, kcal: 2000 } };
+    await repository.confirmChoice(TODAY, "dinner", choiceFixture(cardsFile, "cen-02"), oldGoal);
+    await repository.confirmChoice("2026-11-17", "breakfast", choiceFixture(cardsFile, "des-01"), goalFixture);
 
     renderApp({ cardsFile, repository });
 
@@ -207,9 +205,8 @@ describe("Selecting and confirming a Tarjeta", () => {
 
   it("reflects a change made to the repository outside the UI", async () => {
     const { repository } = renderApp({ cardsFile });
-    const { cards, goal } = parseCatalog(cardsFile);
 
-    await act(() => repository.confirmChoice(TODAY, "snack", cards.snack[0], goal));
+    await act(() => repository.confirmChoice(TODAY, "snack", choiceFixture(cardsFile, "mer-01"), goalFixture));
 
     expect(card("Yogur con fruta")).toHaveAttribute("aria-pressed", "true");
     expect(progress()).toHaveTextContent("302 / 1.900 kcal");
