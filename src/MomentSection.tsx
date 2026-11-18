@@ -18,7 +18,7 @@ export function MomentSection({ moment, goal, cards }: MomentSectionProps) {
         </h2>
         <p className="text-sm text-muted">{formatKcal(goal.kcal)} kcal</p>
       </header>
-      <ul className="mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2">
+      <ul className="carousel mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2">
         {cards.map((card) => (
           <li key={card.id} className="snap-start">
             <CardView card={card} />
