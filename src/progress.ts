@@ -1,14 +1,14 @@
 import { MOMENTS, type Card, type Moment, type Nutrition } from "./catalog";
 import type { Day } from "./days/DayRepository";
 
-export const ZERO: Nutrition = { kcal: 0, protein: 0, carbs: 0, fat: 0 };
+export const ZERO_NUTRITION: Nutrition = { kcal: 0, protein: 0, carbs: 0, fat: 0 };
 
 /** Progress of a Day: only its Choices count. */
 export function dayTotals(day: Day | null | undefined): Nutrition {
   return MOMENTS.reduce((sum, moment) => {
     const choice = day?.choices[moment];
     return choice ? addNutrition(sum, choice.nutrition) : sum;
-  }, ZERO);
+  }, ZERO_NUTRITION);
 }
 
 /**
@@ -22,7 +22,7 @@ export function previewTotals(
   return MOMENTS.reduce((sum, moment) => {
     const card = selected[moment];
     return card && !day?.choices[moment] ? addNutrition(sum, card.nutrition) : sum;
-  }, ZERO);
+  }, ZERO_NUTRITION);
 }
 
 export function addNutrition(a: Nutrition, b: Nutrition): Nutrition {
