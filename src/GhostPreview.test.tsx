@@ -1,8 +1,7 @@
 import { act, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { parseCatalog } from "./catalog";
-import { renderApp } from "./test/renderApp";
-import { localDate } from "./today";
+import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
 import { cardFixture, cardsFileFixture } from "./test/fixtures";
 
 // Daily Objetivo of the fixture: 1.900 kcal, P 180, C 175, G 56.
@@ -112,7 +111,7 @@ describe("Ghost preview of the unconfirmed Selecciones", () => {
     await user.click(card("Porridge"));
     await user.click(card("Arroz con pollo"));
 
-    await act(() => repository.confirmChoice(localDate(), "lunch", cards.lunch[0], goal));
+    await act(() => repository.confirmChoice(DEFAULT_TODAY, "lunch", cards.lunch[0], goal));
 
     expect(progress()).toHaveTextContent("601 / 1.900 kcal");
     expect(bar("Kcal")).toHaveAttribute("aria-valuetext", "601 / 1.900 kcal, +408 kcal previstas");

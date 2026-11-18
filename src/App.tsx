@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import { MOMENTS, parseCatalog, type Card, type CardsFile, type Moment } from "./catalog";
+import { useToday } from "./clock/ClockProvider";
 import { useDay, useDayRepository } from "./days/DayRepositoryProvider";
 import { MomentSection } from "./MomentSection";
 import { ProgressHeader } from "./ProgressHeader";
 import { dayTotals, previewTotals } from "./progress";
-import { localDate } from "./today";
 
 export interface AppProps {
   cardsFile: CardsFile;
@@ -22,15 +22,22 @@ function selectedCards(cards: Record<Moment, Card[]>, selections: Selections): P
 export function App({ cardsFile }: AppProps) {
   const catalog = useMemo(() => parseCatalog(cardsFile), [cardsFile]);
   const repository = useDayRepository();
-  // "Today", computed once on mount. Ticket 04 replaces this with the injectable clock.
-  const [today] = useState(() => localDate());
+  const { today, refresh: refreshToday } = useToday();
   const day = useDay(today);
-  const [selections, setSelections] = useState<Selections>({});
+  // Selections belong to the date they were made on, so a new Day starts without any.
+  const [selectionState, setSelectionState] = useState<{ date: string; selections: Selections }>({
+    date: today,
+    selections: {},
+  });
+  const selections: Selections = selectionState.date === today ? selectionState.selections : {};
 
   const goal = day?.goal ?? catalog.goal;
 
-  function select(moment: Moment, cardId: string | undefined) {
-    setSelections((current) => ({ ...current, [moment]: cardId }));
+  function select(moment: Moment, cardId: string | undefined, date = today) {
+    setSelectionState((current) => ({
+      date,
+      selections: { ...(current.date === date ? current.selections : {}), [moment]: cardId },
+    }));
   }
 
   function pressCard(moment: Moment, cardId: string) {
@@ -39,16 +46,19 @@ export function App({ cardsFile }: AppProps) {
   }
 
   function pressTick(moment: Moment) {
+    // Re-read the clock before writing: past midnight, the write goes to the new Day (ADR-0003).
+    const date = refreshToday();
     const choice = day?.choices[moment];
     if (choice) {
+      if (date !== today) return; // That Choice belongs to the previous Day, which stays intact.
       select(moment, choice.id);
-      void repository.removeChoice(today, moment);
+      void repository.removeChoice(date, moment);
       return;
     }
     const card = catalog.cards[moment].find((c) => c.id === selections[moment]);
     if (!card) return;
-    select(moment, undefined);
-    void repository.confirmChoice(today, moment, card, catalog.goal);
+    select(moment, undefined, date);
+    void repository.confirmChoice(date, moment, card, catalog.goal);
   }
 
   return (
