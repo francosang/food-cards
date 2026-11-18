@@ -3,11 +3,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { parseCatalog } from "./catalog";
 import type { DayRepository } from "./days/DayRepository";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
-import { renderApp } from "./test/renderApp";
+import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
 import { cardFixture, cardsFileFixture } from "./test/fixtures";
-import { localDate } from "./today";
 
-const TODAY = localDate();
+// renderApp injects a fake clock stuck on this date.
+const TODAY = DEFAULT_TODAY;
 
 const cardsFile = cardsFileFixture([
   cardFixture({ id: "des-01", momento: "desayuno", nombre: "Porridge" }),
