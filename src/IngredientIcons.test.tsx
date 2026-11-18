@@ -59,7 +59,7 @@ describe("Ingredient icons", () => {
     const { user } = renderApp();
     const card = screen.getByRole("article", { name: "Lomo de cerdo con patatas y judías verdes" });
     await user.click(within(card).getByRole("button", { name: "Lomo de cerdo con patatas y judías verdes" }));
-    await user.click(within(card).getByRole("button", { name: "Ver detalles" }));
+    await user.click(within(card).getByRole("button", { name: "Ver detalles de Lomo de cerdo con patatas y judías verdes" }));
 
     const dialog = screen.getByRole("dialog", { name: "Lomo de cerdo con patatas y judías verdes" });
     const ingredients = within(within(dialog).getByRole("list", { name: "Ingredientes" })).getAllByRole("listitem");

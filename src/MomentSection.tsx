@@ -68,7 +68,7 @@ export function MomentSection({
       >
         {cards.map((card) => (
           <li key={card.id} data-card-id={card.id} className="snap-start">
-            <CardView card={card} state={stateOf(card)} onPress={() => onCardPress(card.id)} />
+            <CardView card={card} state={stateOf(card)} inactive={confirmed} onPress={() => onCardPress(card.id)} />
           </li>
         ))}
       </ul>

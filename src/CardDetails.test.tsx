@@ -30,21 +30,23 @@ function cardButton(name: string) {
 }
 
 describe("Viewing a Tarjeta's details", () => {
-  it("shows 'Ver detalles' only inside the selected Tarjeta", async () => {
+  it("shows 'Ver detalles' only inside the selected Tarjeta, named after it", async () => {
     const { user } = renderApp({ cardsFile });
-    expect(screen.queryByRole("button", { name: "Ver detalles" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Ver detalles/ })).not.toBeInTheDocument();
 
     await user.click(cardButton("Tostadas con pavo"));
 
-    expect(within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles" })).toBeVisible();
-    expect(within(cardArticle("Porridge")).queryByRole("button", { name: "Ver detalles" })).not.toBeInTheDocument();
+    const details = within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles de Tostadas con pavo" });
+    expect(details).toBeVisible();
+    expect(details).toHaveTextContent("Ver detalles");
+    expect(within(cardArticle("Porridge")).queryByRole("button", { name: /Ver detalles/ })).not.toBeInTheDocument();
   });
 
   it("opens a dialog with the Momento, kind, nutrition with fiber, ingredients and preparation", async () => {
     const { user } = renderApp({ cardsFile });
     await user.click(cardButton("Tostadas con pavo"));
 
-    await user.click(within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles" }));
+    await user.click(within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles de Tostadas con pavo" }));
 
     const dialog = screen.getByRole("dialog", { name: "Tostadas con pavo" });
     expect(dialog).toHaveTextContent("Desayuno");
@@ -72,7 +74,7 @@ describe("Viewing a Tarjeta's details", () => {
   it("is read-only: it has no confirm action", async () => {
     const { user } = renderApp({ cardsFile });
     await user.click(cardButton("Tostadas con pavo"));
-    await user.click(screen.getByRole("button", { name: "Ver detalles" }));
+    await user.click(screen.getByRole("button", { name: "Ver detalles de Tostadas con pavo" }));
 
     const buttons = within(screen.getByRole("dialog")).getAllByRole("button");
     expect(buttons.map((b) => b.getAttribute("aria-label") ?? b.textContent)).toEqual(["Cerrar"]);
@@ -85,7 +87,7 @@ describe("Viewing a Tarjeta's details", () => {
   ])("closes with %s, keeping the Selección", async (_how, closeWith) => {
     const { user } = renderApp({ cardsFile });
     await user.click(cardButton("Tostadas con pavo"));
-    await user.click(screen.getByRole("button", { name: "Ver detalles" }));
+    await user.click(screen.getByRole("button", { name: "Ver detalles de Tostadas con pavo" }));
     expect(screen.getByRole("dialog")).toBeVisible();
 
     await closeWith(user);
@@ -98,7 +100,7 @@ describe("Viewing a Tarjeta's details", () => {
   it("stays open when clicking inside it", async () => {
     const { user } = renderApp({ cardsFile });
     await user.click(cardButton("Tostadas con pavo"));
-    await user.click(screen.getByRole("button", { name: "Ver detalles" }));
+    await user.click(screen.getByRole("button", { name: "Ver detalles de Tostadas con pavo" }));
 
     await user.click(within(screen.getByRole("dialog")).getByRole("heading", { name: "Preparación" }));
 
@@ -110,7 +112,7 @@ describe("Viewing a Tarjeta's details", () => {
     await user.click(cardButton("Tostadas con pavo"));
     await user.click(screen.getByRole("button", { name: "Confirmar desayuno" }));
 
-    await user.click(within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles" }));
+    await user.click(within(cardArticle("Tostadas con pavo")).getByRole("button", { name: "Ver detalles de Tostadas con pavo" }));
     expect(screen.getByRole("dialog", { name: "Tostadas con pavo" })).toBeVisible();
     await user.keyboard("{Escape}");
 

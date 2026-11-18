@@ -27,6 +27,8 @@ function showsKind(card: Card): boolean {
 interface CardViewProps {
   card: Card;
   state: CardState;
+  /** Its Moment is confirmed: presses are ignored, but the Card stays focusable. */
+  inactive: boolean;
   onPress: () => void;
 }
 
@@ -34,7 +36,7 @@ interface CardViewProps {
  * A fixed-size Card. The whole Card is a toggle button (stretched over it, so the
  * heading and chips keep their semantics); the reserved bottom slot sits above it.
  */
-export function CardView({ card, state, onPress }: CardViewProps) {
+export function CardView({ card, state, inactive, onPress }: CardViewProps) {
   const headingId = `card-${card.id}`;
   // Viewing details is local to the Card: it never touches the Selection or the Choice.
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -47,6 +49,7 @@ export function CardView({ card, state, onPress }: CardViewProps) {
         type="button"
         aria-labelledby={headingId}
         aria-pressed={state !== "normal"}
+        aria-disabled={inactive || undefined}
         onClick={onPress}
         className="absolute inset-0 rounded-2xl"
       />
@@ -94,6 +97,7 @@ export function CardView({ card, state, onPress }: CardViewProps) {
         {state !== "normal" && (
           <button
             type="button"
+            aria-label={`Ver detalles de ${card.name}`}
             onClick={() => setDetailsOpen(true)}
             className="pointer-events-auto h-9 rounded-full border border-line bg-surface px-4 text-sm font-semibold text-ink"
           >

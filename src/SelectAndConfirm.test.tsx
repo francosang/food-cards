@@ -131,6 +131,23 @@ describe("Selecting and confirming a Tarjeta", () => {
     });
   });
 
+  it("marks the Tarjetas of a confirmed Momento as inactive, still focusable", async () => {
+    const { user } = renderApp({ cardsFile });
+    await user.click(card("Porridge"));
+    await user.click(screen.getByRole("button", { name: "Confirmar desayuno" }));
+
+    expect(card("Porridge")).toHaveAttribute("aria-disabled", "true");
+    expect(card("Tostadas con pavo")).toHaveAttribute("aria-disabled", "true");
+    expect(card("Arroz con pollo")).not.toHaveAttribute("aria-disabled");
+    card("Tostadas con pavo").focus();
+    expect(card("Tostadas con pavo")).toHaveFocus();
+
+    await user.click(screen.getByRole("button", { name: "Quitar elección de desayuno" }));
+
+    expect(card("Porridge")).not.toHaveAttribute("aria-disabled");
+    expect(card("Tostadas con pavo")).not.toHaveAttribute("aria-disabled");
+  });
+
   it("ignores taps on the Tarjetas of a confirmed Momento", async () => {
     const { user, repository } = renderApp({ cardsFile });
     await user.click(card("Porridge"));
