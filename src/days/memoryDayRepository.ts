@@ -1,10 +1,5 @@
-import {
-  byDateDescending,
-  type Day,
-  type DayListener,
-  type DayRepository,
-  type HistoryListener,
-} from "./DayRepository";
+import { byDateDescending, type Day, type DayRepository } from "./DayRepository";
+import { createSubscriptions } from "./subscriptions";
 
 /**
  * Reference implementation, kept in memory: the one the UI tests inject.
@@ -12,14 +7,7 @@ import {
  */
 export function createMemoryDayRepository(): DayRepository {
   const days = new Map<string, Day>();
-  const listeners = new Map<string, Set<DayListener>>();
-  const historyListeners = new Set<HistoryListener>();
-
-  /** Tells the subscribers of `date` and of the History that the Day of `date` changed. */
-  function notify(date: string) {
-    for (const listener of listeners.get(date) ?? []) listener(read(date));
-    for (const listener of historyListeners) listener(readAll());
-  }
+  const { subscribeDay, subscribeHistory, notify } = createSubscriptions(read, readAll);
 
   function read(date: string): Day | null {
     const day = days.get(date);
@@ -31,25 +19,8 @@ export function createMemoryDayRepository(): DayRepository {
   }
 
   return {
-    subscribeDay(date, listener) {
-      // Each subscription gets its own entry, even if the same listener subscribes twice.
-      const subscription: DayListener = (day) => listener(day);
-      if (!listeners.has(date)) listeners.set(date, new Set());
-      listeners.get(date)!.add(subscription);
-      listener(read(date));
-      return () => {
-        listeners.get(date)?.delete(subscription);
-      };
-    },
-
-    subscribeHistory(listener) {
-      const subscription: HistoryListener = (days) => listener(days);
-      historyListeners.add(subscription);
-      listener(readAll());
-      return () => {
-        historyListeners.delete(subscription);
-      };
-    },
+    subscribeDay,
+    subscribeHistory,
 
     async confirmChoice(date, moment, choice, goal) {
       const existing = days.get(date);

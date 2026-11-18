@@ -1,12 +1,6 @@
 import { MOMENTS, type Goal, type Ingredient, type Moment, type Nutrition } from "../catalog";
-import {
-  byDateDescending,
-  type Choice,
-  type Day,
-  type DayListener,
-  type DayRepository,
-  type HistoryListener,
-} from "./DayRepository";
+import { byDateDescending, type Choice, type Day, type DayRepository } from "./DayRepository";
+import { createSubscriptions } from "./subscriptions";
 
 /** Version of the stored format. Stored Days of any other version read as absent. */
 export const SCHEMA_VERSION = 1;
@@ -37,8 +31,7 @@ export interface LocalStorageDayRepositoryOptions {
  */
 export function createLocalStorageDayRepository(options: LocalStorageDayRepositoryOptions = {}): DayRepository {
   const storage = options.storage ?? window.localStorage;
-  const listeners = new Map<string, Set<DayListener>>();
-  const historyListeners = new Set<HistoryListener>();
+  const { subscribeDay, subscribeHistory, notify, notifyAll } = createSubscriptions(read, readAll);
 
   /** A fresh copy every time, so callers can never alter what is stored. */
   function read(date: string): Day | null {
@@ -63,18 +56,6 @@ export function createLocalStorageDayRepository(options: LocalStorageDayReposito
     else storage.removeItem(dayStorageKey(date));
   }
 
-  /** Tells the subscribers of `date` and of the History that the Day of `date` changed. */
-  function notify(date: string) {
-    for (const listener of listeners.get(date) ?? []) listener(read(date));
-    for (const listener of historyListeners) listener(readAll());
-  }
-
-  /** Tells every subscriber, of any date and of the History, that any Day may have changed. */
-  function notifyAll() {
-    for (const [date, dayListeners] of listeners) for (const listener of dayListeners) listener(read(date));
-    for (const listener of historyListeners) listener(readAll());
-  }
-
   // Changes made by other tabs, like Firestore's changes from other devices.
   // The browser never fires this on the tab that made the change.
   (options.window ?? window).addEventListener("storage", (event) => {
@@ -85,24 +66,8 @@ export function createLocalStorageDayRepository(options: LocalStorageDayReposito
   });
 
   return {
-    subscribeDay(date, listener) {
-      const subscription: DayListener = (day) => listener(day);
-      if (!listeners.has(date)) listeners.set(date, new Set());
-      listeners.get(date)!.add(subscription);
-      listener(read(date));
-      return () => {
-        listeners.get(date)?.delete(subscription);
-      };
-    },
-
-    subscribeHistory(listener) {
-      const subscription: HistoryListener = (days) => listener(days);
-      historyListeners.add(subscription);
-      listener(readAll());
-      return () => {
-        historyListeners.delete(subscription);
-      };
-    },
+    subscribeDay,
+    subscribeHistory,
 
     async confirmChoice(date, moment, choice, goal) {
       const existing = read(date);
