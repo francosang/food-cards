@@ -211,6 +211,136 @@ export function describeDayRepositoryContract(
       await settle();
       expect(fresh.emissions).toEqual([{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }]);
     });
+
+    it("emits an empty History on subscribe when there are no Days", async () => {
+      const repository = await createRepository();
+      const history = recordHistory(repository);
+
+      await settle();
+
+      expect(history.emissions).toEqual([[]]);
+    });
+
+    it("emits every Day on subscribe, most recent date first", async () => {
+      const repository = await createRepository();
+      await repository.confirmChoice(LAST_WEEK, "lunch", RICE, GOAL);
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, NEW_GOAL);
+      await repository.confirmChoice(LAST_YEAR, "breakfast", TOAST, GOAL);
+      await repository.confirmChoice(YESTERDAY, "breakfast", TOAST, GOAL);
+      await repository.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+
+      const history = recordHistory(repository);
+      await settle();
+
+      expect(history.emissions).toEqual([
+        [
+          { date: TODAY, goal: NEW_GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: GOAL, choices: { breakfast: TOAST, lunch: RICE } },
+          { date: LAST_WEEK, goal: GOAL, choices: { lunch: RICE } },
+          { date: LAST_YEAR, goal: GOAL, choices: { breakfast: TOAST } },
+        ],
+      ]);
+    });
+
+    it("confirming and removing notify every History subscriber of the Days after the change", async () => {
+      const repository = await createRepository();
+      await repository.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+      const first = recordHistory(repository);
+      const second = recordHistory(repository);
+      await settle();
+
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await settle();
+      await repository.confirmChoice(YESTERDAY, "breakfast", TOAST, GOAL);
+      await settle();
+      await repository.removeChoice(YESTERDAY, "lunch");
+      await settle();
+
+      const expected = [
+        [{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }],
+        [
+          { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } },
+        ],
+        [
+          { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: GOAL, choices: { breakfast: TOAST, lunch: RICE } },
+        ],
+        [
+          { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: GOAL, choices: { breakfast: TOAST } },
+        ],
+      ];
+      expect(first.emissions).toEqual(expected);
+      expect(second.emissions).toEqual(expected);
+    });
+
+    it("removing the last Choice of a Day takes it out of the History", async () => {
+      const repository = await createRepository();
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await repository.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+      const history = recordHistory(repository);
+      await settle();
+
+      await repository.removeChoice(YESTERDAY, "lunch");
+      await settle();
+      await repository.removeChoice(TODAY, "breakfast");
+      await settle();
+
+      expect(history.emissions.slice(1)).toEqual([
+        [{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }],
+        [],
+      ]);
+      const fresh = recordHistory(repository);
+      await settle();
+      expect(fresh.emissions).toEqual([[]]);
+    });
+
+    it("removing a Moment without a Choice does not notify the History", async () => {
+      const repository = await createRepository();
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      const history = recordHistory(repository);
+      await settle();
+
+      await repository.removeChoice(TODAY, "dinner");
+      await repository.removeChoice(YESTERDAY, "dinner");
+      await settle();
+
+      expect(history.emissions).toHaveLength(1);
+    });
+
+    it("stops notifying the History after unsubscribe, and unsubscribing twice is harmless", async () => {
+      const repository = await createRepository();
+      const gone = recordHistory(repository);
+      const staying = recordHistory(repository);
+      await settle();
+
+      gone.unsubscribe();
+      gone.unsubscribe();
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await settle();
+
+      expect(gone.emissions).toEqual([[]]);
+      expect(staying.emissions).toHaveLength(2);
+    });
+
+    it("hands out History snapshots that cannot alter what is stored", async () => {
+      const repository = await createRepository();
+      await repository.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      const received = recordHistory(repository);
+      await settle();
+
+      const days = received.last!;
+      days[0].choices.breakfast!.name = "Cambiada";
+      days[0].goal.daily.kcal = 1;
+      days.push({ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } });
+
+      const fresh = recordHistory(repository);
+      const day = record(repository, TODAY);
+      await settle();
+      expect(fresh.emissions).toEqual([[{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }]]);
+      expect(day.emissions).toEqual([{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }]);
+    });
   });
 }
 
@@ -299,6 +429,54 @@ export function describeDurableDayRepositoryContract<Store>(
       expect(today.emissions).toEqual([null]);
     });
 
+    it("a new instance's History has the Days that earlier ones wrote", async () => {
+      const store = await harness.createStore();
+      const before = await harness.open(store);
+      await before.confirmChoice(YESTERDAY, "lunch", RICE, NEW_GOAL);
+      await before.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+
+      const reopened = await harness.open(store);
+      const history = recordHistory(reopened);
+      await settle();
+
+      expect(history.emissions).toEqual([
+        [
+          { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: NEW_GOAL, choices: { lunch: RICE } },
+        ],
+      ]);
+    });
+
+    it("notifies this instance's History of writes made by another instance, of any date", async () => {
+      const store = await harness.createStore();
+      const here = await harness.open(store);
+      const elsewhere = await harness.open(store);
+      const history = recordHistory(here);
+      await settle();
+
+      await elsewhere.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+      await settle();
+      await elsewhere.confirmChoice(TODAY, "breakfast", PORRIDGE, GOAL);
+      await settle();
+      await elsewhere.removeChoice(YESTERDAY, "lunch");
+      await settle();
+
+      expect(history.emissions).toEqual([
+        [],
+        [{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }],
+        [
+          { date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } },
+          { date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } },
+        ],
+        [{ date: TODAY, goal: GOAL, choices: { breakfast: PORRIDGE } }],
+      ]);
+
+      history.unsubscribe();
+      await elsewhere.removeChoice(TODAY, "breakfast");
+      await settle();
+      expect(history.emissions).toHaveLength(4);
+    });
+
     for (const [what, spoil] of [
       ["corrupt data", harness.corruptDay],
       ["a Day in an unknown schema version", harness.storeUnknownSchemaDay],
@@ -327,6 +505,20 @@ export function describeDurableDayRepositoryContract<Store>(
         expect(todayAgain.emissions).toEqual([{ date: TODAY, goal: NEW_GOAL, choices: { breakfast: PORRIDGE } }]);
         expect(yesterdayAgain.emissions).toEqual([{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }]);
       });
+
+      it(`leaves ${what} out of the History, keeping the valid Days`, async () => {
+        const store = await harness.createStore();
+        const before = await harness.open(store);
+        await before.confirmChoice(YESTERDAY, "lunch", RICE, GOAL);
+        await spoil(store, TODAY);
+        await spoil(store, LAST_WEEK);
+
+        const repository = await harness.open(store);
+        const history = recordHistory(repository);
+        await settle();
+
+        expect(history.emissions).toEqual([[{ date: YESTERDAY, goal: GOAL, choices: { lunch: RICE } }]]);
+      });
     }
   });
 }
@@ -335,6 +527,8 @@ export function describeDurableDayRepositoryContract<Store>(
 
 const TODAY = "2026-11-18";
 const YESTERDAY = "2026-11-17";
+const LAST_WEEK = "2026-11-10";
+const LAST_YEAR = "2025-12-31";
 
 const GOAL: Goal = {
   daily: { kcal: 1900, protein: 180, carbs: 175, fat: 56, fiberMin: 30 },
@@ -379,6 +573,19 @@ function settle() {
 function record(repository: DayRepository, date: string) {
   const emissions: (Day | null)[] = [];
   const unsubscribe = repository.subscribeDay(date, (day) => emissions.push(day));
+  return {
+    emissions,
+    unsubscribe,
+    get last() {
+      return emissions[emissions.length - 1];
+    },
+  };
+}
+
+/** Subscribes to the History and keeps every emission. */
+function recordHistory(repository: DayRepository) {
+  const emissions: Day[][] = [];
+  const unsubscribe = repository.subscribeHistory((days) => emissions.push(days));
   return {
     emissions,
     unsubscribe,

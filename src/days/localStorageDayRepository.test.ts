@@ -28,7 +28,7 @@ describeDurableDayRepositoryContract("localStorage", {
 
 interface FakeTab {
   window: EventTarget;
-  localStorage: Pick<Storage, "getItem" | "setItem" | "removeItem">;
+  localStorage: Pick<Storage, "getItem" | "setItem" | "removeItem" | "key" | "length">;
 }
 
 /**
@@ -68,6 +68,10 @@ function createFakeBrowser() {
         getItem: (key) => entries.get(key) ?? null,
         setItem: (key, value) => change(tab, key, String(value)),
         removeItem: (key) => change(tab, key, null),
+        key: (index) => [...entries.keys()][index] ?? null,
+        get length() {
+          return entries.size;
+        },
       },
     };
     tabs.push(tab);
