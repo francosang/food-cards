@@ -1,6 +1,7 @@
-import type { Moment } from "../catalog";
+import { MOMENTS, type Goal, type Ingredient, type Moment, type Nutrition } from "../catalog";
 import {
   byDateDescending,
+  type Choice,
   type Day,
   type DayListener,
   type DayRepository,
@@ -117,7 +118,10 @@ export function createLocalStorageDayRepository(options: LocalStorageDayReposito
   };
 }
 
-/** Corrupt entries, other schema versions or another date's Day read as absent. */
+/**
+ * Corrupt entries, other schema versions and anything that is not a valid Day of `date`
+ * (another date, a missing field, a Day without Choices) read as absent.
+ */
 function parse(raw: string | null, date: string): Day | null {
   if (raw === null) return null;
   let stored: unknown;
@@ -127,11 +131,69 @@ function parse(raw: string | null, date: string): Day | null {
     return null;
   }
   if (!isRecord(stored) || stored.schemaVersion !== SCHEMA_VERSION) return null;
-  const day = stored.day;
-  if (!isRecord(day) || day.date !== date || !isRecord(day.goal) || !isRecord(day.choices)) return null;
-  return day as unknown as Day;
+  return isDay(stored.day, date) ? stored.day : null;
+}
+
+function isDay(value: unknown, date: string): value is Day {
+  if (!isRecord(value) || value.date !== date || !isGoal(value.goal) || !isRecord(value.choices)) return false;
+  const entries = Object.entries(value.choices);
+  return entries.length > 0 && entries.every(([moment, choice]) => isMoment(moment) && isChoice(choice, moment));
+}
+
+function isGoal(value: unknown): value is Goal {
+  return (
+    isRecord(value) &&
+    isNutrition(value.daily) &&
+    isNumber(value.daily.fiberMin) &&
+    isRecord(value.moments) &&
+    MOMENTS.every((moment) => isNutrition((value.moments as Record<string, unknown>)[moment]))
+  );
+}
+
+function isChoice(value: unknown, moment: Moment): value is Choice {
+  return (
+    isRecord(value) &&
+    value.moment === moment &&
+    isString(value.id) &&
+    (value.kind === "sweet" || value.kind === "savory") &&
+    isString(value.name) &&
+    Array.isArray(value.ingredients) &&
+    value.ingredients.every(isIngredient) &&
+    isString(value.preparation) &&
+    isNutrition(value.nutrition) &&
+    isNumber(value.nutrition.fiber)
+  );
+}
+
+function isIngredient(value: unknown): value is Ingredient {
+  return (
+    isRecord(value) &&
+    isString(value.id) &&
+    isString(value.name) &&
+    isNumber(value.grams) &&
+    isString(value.category) &&
+    (value.householdUnit === undefined || isString(value.householdUnit))
+  );
+}
+
+function isNutrition(value: unknown): value is Nutrition & Record<string, unknown> {
+  return (
+    isRecord(value) && isNumber(value.kcal) && isNumber(value.protein) && isNumber(value.carbs) && isNumber(value.fat)
+  );
+}
+
+function isMoment(value: string): value is Moment {
+  return (MOMENTS as readonly string[]).includes(value);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isString(value: unknown): value is string {
+  return typeof value === "string";
+}
+
+function isNumber(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value);
 }

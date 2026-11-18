@@ -1,4 +1,4 @@
-import { beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import type { Card, Goal } from "../catalog";
 import type { Day } from "./DayRepository";
 import { describeDayRepositoryContract, describeDurableDayRepositoryContract } from "./dayRepositoryContract";
@@ -26,6 +26,60 @@ describeDurableDayRepositoryContract("localStorage", {
     const day: Day = { date, goal: GOAL, choices: { breakfast: PORRIDGE } };
     browser.entries.set(dayStorageKey(date), JSON.stringify({ schemaVersion: SCHEMA_VERSION + 1, day }));
   },
+  storeWrongShapeDay: (browser, date) => {
+    const day = { date, goal: {}, choices: { breakfast: { id: "des-01", name: "Porridge" } } };
+    browser.entries.set(dayStorageKey(date), JSON.stringify({ schemaVersion: SCHEMA_VERSION, day }));
+  },
+});
+
+describe("localStorage: a stored Day in the wrong shape reads as absent", () => {
+  const DATE = "2026-11-18";
+  type Spoil = (day: Record<string, any>) => unknown;
+  const cases: [string, Spoil][] = [
+    ["no Day at all", () => null],
+    ["an empty Goal", (day) => ({ ...day, goal: {} })],
+    ["a daily Goal without fiberMin", (day) => (delete day.goal.daily.fiberMin, day)],
+    ["a Goal missing a Moment", (day) => (delete day.goal.moments.dinner, day)],
+    ["a Goal with a number as text", (day) => ((day.goal.moments.lunch.kcal = "600"), day)],
+    ["a Goal with a null number", (day) => ((day.goal.daily.kcal = null), day)],
+    ["choices as a list", (day) => ({ ...day, choices: [PORRIDGE] })],
+    ["no Choices", (day) => ({ ...day, choices: {} })],
+    ["a Choice under an unknown Moment", (day) => ({ ...day, choices: { ...day.choices, brunch: PORRIDGE } })],
+    ["a Choice under another Moment", (day) => ({ ...day, choices: { lunch: PORRIDGE } })],
+    ["a null Choice", (day) => ({ ...day, choices: { breakfast: null } })],
+    ["a Choice without nutrition", (day) => (delete day.choices.breakfast.nutrition, day)],
+    ["a Choice without fiber", (day) => (delete day.choices.breakfast.nutrition.fiber, day)],
+    ["a Choice with an unknown kind", (day) => ((day.choices.breakfast.kind = "spicy"), day)],
+    ["a Choice without a name", (day) => (delete day.choices.breakfast.name, day)],
+    ["a Choice without preparation", (day) => (delete day.choices.breakfast.preparation, day)],
+    ["ingredients that are not a list", (day) => ((day.choices.breakfast.ingredients = {}), day)],
+    ["an ingredient with grams as text", (day) => ((day.choices.breakfast.ingredients[0].grams = "40"), day)],
+    ["an ingredient with a non-text household unit", (day) => ((day.choices.breakfast.ingredients[0].householdUnit = 2), day)],
+  ];
+
+  it("reads a valid Day stored the same way", async () => {
+    store(validDay());
+    expect(await firstEmission()).toEqual(validDay());
+  });
+
+  for (const [what, spoil] of cases) {
+    it(`with ${what}`, async () => {
+      store(spoil(validDay()));
+      expect(await firstEmission()).toBeNull();
+    });
+  }
+
+  function validDay(): Record<string, any> {
+    return structuredClone({ date: DATE, goal: GOAL, choices: { breakfast: PORRIDGE } });
+  }
+
+  function store(day: unknown) {
+    localStorage.setItem(dayStorageKey(DATE), JSON.stringify({ schemaVersion: SCHEMA_VERSION, day }));
+  }
+
+  function firstEmission(): Promise<Day | null> {
+    return new Promise((resolve) => createLocalStorageDayRepository().subscribeDay(DATE, resolve)());
+  }
 });
 
 const GOAL: Goal = {

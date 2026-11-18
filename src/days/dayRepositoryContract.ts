@@ -360,6 +360,8 @@ export interface DurableDayRepositoryHarness<Store> {
   corruptDay(store: Store, date: string): void | Promise<void>;
   /** Stores a Day of `date` in a schema version the implementation does not know. */
   storeUnknownSchemaDay(store: Store, date: string): void | Promise<void>;
+  /** Stores readable data of the known schema version that is not a valid Day of `date`. */
+  storeWrongShapeDay(store: Store, date: string): void | Promise<void>;
 }
 
 /**
@@ -480,6 +482,7 @@ export function describeDurableDayRepositoryContract<Store>(
     for (const [what, spoil] of [
       ["corrupt data", harness.corruptDay],
       ["a Day in an unknown schema version", harness.storeUnknownSchemaDay],
+      ["data in the wrong shape", harness.storeWrongShapeDay],
     ] as const) {
       it(`reads ${what} as an absent Day, keeping the valid Days of other dates`, async () => {
         const store = await harness.createStore();
