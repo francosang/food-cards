@@ -69,12 +69,19 @@ export function createLocalStorageDayRepository(options: LocalStorageDayReposito
     for (const listener of historyListeners) listener(readAll());
   }
 
+  /** Tells every subscriber, of any date and of the History, that any Day may have changed. */
+  function notifyAll() {
+    for (const [date, dayListeners] of listeners) for (const listener of dayListeners) listener(read(date));
+    for (const listener of historyListeners) listener(readAll());
+  }
+
   // Changes made by other tabs, like Firestore's changes from other devices.
   // The browser never fires this on the tab that made the change.
   (options.window ?? window).addEventListener("storage", (event) => {
     const { key, storageArea } = event as StorageEvent;
-    if (storageArea !== storage || !key?.startsWith(KEY_PREFIX)) return;
-    notify(key.slice(KEY_PREFIX.length));
+    if (storageArea !== storage) return;
+    if (key === null) notifyAll(); // Another tab ran `clear()`.
+    else if (key.startsWith(KEY_PREFIX)) notify(key.slice(KEY_PREFIX.length));
   });
 
   return {

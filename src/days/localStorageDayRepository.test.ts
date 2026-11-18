@@ -32,6 +32,30 @@ describeDurableDayRepositoryContract("localStorage", {
   },
 });
 
+describe("localStorage: another tab clearing the storage", () => {
+  it("notifies every Day and History subscriber of this tab", async () => {
+    const browser = createFakeBrowser();
+    const tab = browser.openTab();
+    const here = createLocalStorageDayRepository({ storage: tab.localStorage, window: tab.window });
+    const elsewhere = browser.openTab();
+    await here.confirmChoice("2026-11-18", "breakfast", PORRIDGE, GOAL);
+    await here.confirmChoice("2026-11-17", "breakfast", PORRIDGE, GOAL);
+    const today: (Day | null)[] = [];
+    const yesterday: (Day | null)[] = [];
+    const history: Day[][] = [];
+    here.subscribeDay("2026-11-18", (day) => today.push(day));
+    here.subscribeDay("2026-11-17", (day) => yesterday.push(day));
+    here.subscribeHistory((days) => history.push(days));
+
+    elsewhere.localStorage.clear();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(today.slice(1)).toEqual([null]);
+    expect(yesterday.slice(1)).toEqual([null]);
+    expect(history.slice(1)).toEqual([[]]);
+  });
+});
+
 describe("localStorage: a stored Day in the wrong shape reads as absent", () => {
   const DATE = "2026-11-18";
   type Spoil = (day: Record<string, any>) => unknown;
@@ -104,13 +128,14 @@ const PORRIDGE: Card = {
 
 interface FakeTab {
   window: EventTarget;
-  localStorage: Pick<Storage, "getItem" | "setItem" | "removeItem" | "key" | "length">;
+  localStorage: Pick<Storage, "getItem" | "setItem" | "removeItem" | "key" | "length" | "clear">;
 }
 
 /**
  * One origin's localStorage, shared by every tab opened on it. Like a browser, a
  * change fires a `storage` event, in a later task, on every other tab's window
  * (never on the tab that made it), and only when the value actually changed.
+ * `clear()` fires a single event with every field `null` but `storageArea`.
  */
 function createFakeBrowser() {
   const entries = new Map<string, string>();
@@ -121,6 +146,16 @@ function createFakeBrowser() {
     if (oldValue === newValue) return;
     if (newValue === null) entries.delete(key);
     else entries.set(key, newValue);
+    notifyOtherTabs(from, key, oldValue, newValue);
+  }
+
+  function clear(from: FakeTab) {
+    if (entries.size === 0) return;
+    entries.clear();
+    notifyOtherTabs(from, null, null, null);
+  }
+
+  function notifyOtherTabs(from: FakeTab, key: string | null, oldValue: string | null, newValue: string | null) {
     for (const tab of tabs) {
       if (tab === from) continue;
       setTimeout(() => {
@@ -144,6 +179,7 @@ function createFakeBrowser() {
         getItem: (key) => entries.get(key) ?? null,
         setItem: (key, value) => change(tab, key, String(value)),
         removeItem: (key) => change(tab, key, null),
+        clear: () => clear(tab),
         key: (index) => [...entries.keys()][index] ?? null,
         get length() {
           return entries.size;
