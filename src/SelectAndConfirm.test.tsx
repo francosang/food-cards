@@ -1,20 +1,13 @@
 import { act, screen, within } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { parseCatalog } from "./catalog";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
-import { renderApp } from "./test/renderApp";
+import { DEFAULT_TODAY, renderApp } from "./test/renderApp";
 import { cardFixture, cardsFileFixture } from "./test/fixtures";
 import { readDay } from "./test/readDay";
 
-// "Today" is the device's local date. Until the injectable clock (ticket 04), fix it by faking Date only.
-const TODAY = "2026-11-18";
-beforeEach(() => {
-  vi.useFakeTimers({ toFake: ["Date"] });
-  vi.setSystemTime(new Date(2026, 10, 18, 9, 30));
-});
-afterEach(() => {
-  vi.useRealTimers();
-});
+// renderApp injects a fake clock stuck on this date.
+const TODAY = DEFAULT_TODAY;
 
 const cardsFile = cardsFileFixture([
   cardFixture({

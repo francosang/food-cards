@@ -40,6 +40,7 @@ FRACC = {0.25: "¼", 0.5: "½", 0.75: "¾"}
 
 
 def unidad_casera(ing_id, g):
+    """Texto de la unidad casera ("2 rebanadas"), o "" si no aplica: múltiplos de ¼, plural si es > 1."""
     u = ING[ing_id].get("unidad")
     if not u:
         return ""
@@ -49,7 +50,16 @@ def unidad_casera(ing_id, g):
         return ""
     txt = (str(entero) if entero else "") + FRACC.get(resto, "")
     nombre = u.get("plural", u["nombre"]) if n > 1 else u["nombre"]
-    return f" ({txt} {nombre})"
+    return f"{txt} {nombre}"
+
+
+def ingrediente(e):
+    """Ingrediente de una Tarjeta para tarjetas.json; `unidad_casera` solo si aplica."""
+    out = {**e, "nombre": ING[e["id"]]["nombre"], "categoria": ING[e["id"]]["categoria"]}
+    u = unidad_casera(e["id"], e["g"])
+    if u:
+        out["unidad_casera"] = u
+    return out
 
 
 def main():
@@ -59,9 +69,7 @@ def main():
         err = fuera_de_tolerancia(tot, OBJ["momentos"][r["momento"]])
         if err:
             fallos.append(f"{r['id']}: " + ", ".join(err))
-        tarjetas.append({**r, "ingredientes": [
-            {**e, "nombre": ING[e["id"]]["nombre"], "categoria": ING[e["id"]]["categoria"]} for e in r["ingredientes"]
-        ], "nutricion": tot})
+        tarjetas.append({**r, "ingredientes": [ingrediente(e) for e in r["ingredientes"]], "nutricion": tot})
 
     md = ["# Tarjetas de comidas", "",
           "> Generado por `scripts/calcular.py` a partir de `data/recetas.json` e `data/ingredientes.json`. No editar a mano.", "",
@@ -81,7 +89,8 @@ def main():
         for t in (t for t in tarjetas if t["momento"] == m):
             n = t["nutricion"]
             md += [f"### {t['nombre']}", f"`{t['id']}` · {t['tipo']}", ""]
-            md += [f"- {e['g']:g} g {e['nombre'].lower()}{unidad_casera(e['id'], e['g'])}" for e in t["ingredientes"]]
+            md += [f"- {e['g']:g} g {e['nombre'].lower()}" + (f" ({e['unidad_casera']})" if "unidad_casera" in e else "")
+                   for e in t["ingredientes"]]
             md += ["", f"**{n['kcal']} kcal** · P {n['prot']} g · C {n['carb']} g · G {n['grasa']} g · fibra {n['fibra']} g", "",
                    f"_{t['preparacion']}_", ""]
     (ROOT / "docs/tarjetas.md").write_text("\n".join(md).rstrip() + "\n")

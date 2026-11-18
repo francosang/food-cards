@@ -1,4 +1,6 @@
-import type { Card, CardKind } from "./catalog";
+import { useState } from "react";
+import { KIND_LABELS, type Card } from "./catalog";
+import { CardDetailsDialog } from "./CardDetailsDialog";
 import { formatGrams, formatKcal } from "./format";
 
 const MACRO_CHIPS = [
@@ -7,7 +9,6 @@ const MACRO_CHIPS = [
   { key: "fat", short: "G", label: "Grasas", className: "bg-fat-soft text-fat" },
 ] as const;
 
-const KIND_LABELS: Record<CardKind, string> = { sweet: "Dulce", savory: "Salado" };
 
 /** normal, selected (a Selection) or confirmed (the Moment's Choice). */
 export type CardState = "normal" | "selected" | "confirmed";
@@ -34,6 +35,8 @@ interface CardViewProps {
  */
 export function CardView({ card, state, onPress }: CardViewProps) {
   const headingId = `card-${card.id}`;
+  // Viewing details is local to the Card: it never touches the Selection or the Choice.
+  const [detailsOpen, setDetailsOpen] = useState(false);
   return (
     <article
       aria-labelledby={headingId}
@@ -78,11 +81,19 @@ export function CardView({ card, state, onPress }: CardViewProps) {
           );
         })}
       </ul>
-      {/*
-        Reserved slot, stacked above the Card's button: "Ver detalles" goes here (ticket 06)
-        without resizing the Card. Give that button `pointer-events-auto`.
-      */}
-      <div className="pointer-events-none relative mt-auto h-9" />
+      {/* Reserved slot, stacked above the Card's button, so showing "Ver detalles" never resizes the Card. */}
+      <div className="pointer-events-none relative mt-auto flex h-9 items-end">
+        {state !== "normal" && (
+          <button
+            type="button"
+            onClick={() => setDetailsOpen(true)}
+            className="pointer-events-auto h-9 rounded-full border border-line bg-surface px-4 text-sm font-semibold text-ink"
+          >
+            Ver detalles
+          </button>
+        )}
+      </div>
+      {detailsOpen && <CardDetailsDialog card={card} onClose={() => setDetailsOpen(false)} />}
     </article>
   );
 }
