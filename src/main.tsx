@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import { registerSW } from "virtual:pwa-register";
 import { App } from "./App";
 import type { CardsFile } from "./catalog";
+import { systemClock } from "./clock/Clock";
+import { ClockProvider } from "./clock/ClockProvider";
 import { DayRepositoryProvider } from "./days/DayRepositoryProvider";
 import { createMemoryDayRepository } from "./days/memoryDayRepository";
 import cardsFile from "../data/tarjetas.json";
@@ -25,8 +27,10 @@ const repository = createMemoryDayRepository();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <DayRepositoryProvider repository={repository}>
-      <App cardsFile={cardsFile as CardsFile} />
-    </DayRepositoryProvider>
+    <ClockProvider clock={systemClock}>
+      <DayRepositoryProvider repository={repository}>
+        <App cardsFile={cardsFile as CardsFile} />
+      </DayRepositoryProvider>
+    </ClockProvider>
   </StrictMode>,
 );
