@@ -1,0 +1,1295 @@
+{
+  "objetivos": {
+    "diario": {
+      "kcal": 1900,
+      "prot": 180,
+      "carb": 175,
+      "grasa": 56,
+      "fibra_min": 30
+    },
+    "tolerancia": {
+      "kcal_pct": 5,
+      "macro_g": 5
+    },
+    "momentos": {
+      "desayuno": {
+        "kcal": 400,
+        "prot": 35,
+        "carb": 45,
+        "grasa": 9
+      },
+      "almuerzo": {
+        "kcal": 600,
+        "prot": 55,
+        "carb": 55,
+        "grasa": 18
+      },
+      "merienda": {
+        "kcal": 300,
+        "prot": 35,
+        "carb": 25,
+        "grasa": 7
+      },
+      "cena": {
+        "kcal": 600,
+        "prot": 55,
+        "carb": 50,
+        "grasa": 22
+      }
+    }
+  },
+  "tarjetas": [
+    {
+      "id": "des-01",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Porridge de avena con claras y plátano",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 190,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "avena",
+          "g": 35,
+          "nombre": "Copos de avena",
+          "categoria": "cereal"
+        },
+        {
+          "id": "claras",
+          "g": 200,
+          "nombre": "Claras de huevo pasteurizadas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "platano",
+          "g": 60,
+          "nombre": "Plátano",
+          "categoria": "fruta"
+        },
+        {
+          "id": "nueces",
+          "g": 10,
+          "nombre": "Nueces",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Calienta la leche con la avena 2-3 min en el micro. Añade las claras removiendo y vuelve a calentar 1-2 min en tandas de 30 s hasta que espese. Encima, el plátano en rodajas, las nueces y canela.",
+      "nutricion": {
+        "kcal": 408,
+        "prot": 34.0,
+        "carb": 44.1,
+        "grasa": 10.1,
+        "fibra": 5.7
+      }
+    },
+    {
+      "id": "des-02",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Batido proteico de avena y fresas",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 260,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "whey",
+          "g": 25,
+          "nombre": "Proteína whey (en polvo)",
+          "categoria": "proteina"
+        },
+        {
+          "id": "avena",
+          "g": 40,
+          "nombre": "Copos de avena",
+          "categoria": "cereal"
+        },
+        {
+          "id": "fresas",
+          "g": 100,
+          "nombre": "Fresas (frescas o congeladas)",
+          "categoria": "fruta"
+        },
+        {
+          "id": "crema_cacahuete",
+          "g": 5,
+          "nombre": "Crema de cacahuete 100 %",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Todo a la batidora 30 s. Con fresas congeladas queda tipo smoothie.",
+      "nutricion": {
+        "kcal": 400,
+        "prot": 35.2,
+        "carb": 44.4,
+        "grasa": 7.8,
+        "fibra": 6.3
+      }
+    },
+    {
+      "id": "des-03",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Bowl de skyr con avena y frutos rojos",
+      "ingredientes": [
+        {
+          "id": "skyr",
+          "g": 270,
+          "nombre": "Skyr natural",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "avena",
+          "g": 25,
+          "nombre": "Copos de avena",
+          "categoria": "cereal"
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 100,
+          "nombre": "Frutos rojos congelados",
+          "categoria": "fruta"
+        },
+        {
+          "id": "nueces",
+          "g": 10,
+          "nombre": "Nueces",
+          "categoria": "grasa"
+        },
+        {
+          "id": "miel",
+          "g": 10,
+          "nombre": "Miel",
+          "categoria": "otro"
+        }
+      ],
+      "preparacion": "Skyr en un bol, avena por encima, frutos rojos descongelados (30 s de micro) y nueces troceadas.",
+      "nutricion": {
+        "kcal": 406,
+        "prot": 35.5,
+        "carb": 42.8,
+        "grasa": 9.2,
+        "fibra": 7.2
+      }
+    },
+    {
+      "id": "des-04",
+      "momento": "desayuno",
+      "tipo": "dulce",
+      "nombre": "Tortitas de avena y claras con queso batido",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 100,
+          "nombre": "Claras de huevo pasteurizadas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "huevo",
+          "g": 55,
+          "nombre": "Huevo entero",
+          "categoria": "proteina"
+        },
+        {
+          "id": "avena",
+          "g": 50,
+          "nombre": "Copos de avena",
+          "categoria": "cereal"
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 130,
+          "nombre": "Queso fresco batido 0 %",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 80,
+          "nombre": "Frutos rojos congelados",
+          "categoria": "fruta"
+        }
+      ],
+      "preparacion": "Bate claras, huevo y avena (o tritúralos). Haz 3-4 tortitas en sartén antiadherente sin aceite. Sirve con el queso batido y los frutos rojos.",
+      "nutricion": {
+        "kcal": 404,
+        "prot": 35.2,
+        "carb": 41.9,
+        "grasa": 9.5,
+        "fibra": 8.2
+      }
+    },
+    {
+      "id": "des-05",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Wrap de pavo con café con leche",
+      "ingredientes": [
+        {
+          "id": "tortilla_integral",
+          "g": 80,
+          "nombre": "Tortillas de trigo integrales (wrap)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 120,
+          "nombre": "Pechuga de pavo en lonchas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 30,
+          "nombre": "Queso fresco batido 0 %",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "ensalada",
+          "g": 50,
+          "nombre": "Ensalada de bolsa + tomate",
+          "categoria": "verdura"
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 180,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        }
+      ],
+      "preparacion": "Unta la tortilla con el queso batido, añade pavo y hojas verdes y enrolla (puedes tostarla 1 min en sartén). Acompaña con café con la leche.",
+      "nutricion": {
+        "kcal": 395,
+        "prot": 35.9,
+        "carb": 45.5,
+        "grasa": 6.1,
+        "fibra": 7.5
+      }
+    },
+    {
+      "id": "des-06",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Revuelto de claras con tostadas",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 150,
+          "nombre": "Claras de huevo pasteurizadas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "huevo",
+          "g": 55,
+          "nombre": "Huevo entero",
+          "categoria": "proteina"
+        },
+        {
+          "id": "pan_integral",
+          "g": 80,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        },
+        {
+          "id": "tomate",
+          "g": 60,
+          "nombre": "Tomate natural",
+          "categoria": "verdura"
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 100,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        }
+      ],
+      "preparacion": "Revuelto de claras y huevo en sartén con unas gotas del aceite. Tostadas con tomate rallado y el resto del aceite. Café con leche aparte.",
+      "nutricion": {
+        "kcal": 403,
+        "prot": 34.8,
+        "carb": 44.9,
+        "grasa": 8.8,
+        "fibra": 6.2
+      }
+    },
+    {
+      "id": "des-07",
+      "momento": "desayuno",
+      "tipo": "salado",
+      "nombre": "Tostadas de atún y tomate con café con leche",
+      "ingredientes": [
+        {
+          "id": "pan_integral",
+          "g": 75,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        },
+        {
+          "id": "atun_natural",
+          "g": 112,
+          "nombre": "Atún claro al natural (escurrido)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "tomate",
+          "g": 60,
+          "nombre": "Tomate natural",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        },
+        {
+          "id": "leche_desnatada",
+          "g": 150,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        }
+      ],
+      "preparacion": "Tuesta el pan, tomate rallado, el aceite y el atún escurrido por encima. Café con la leche.",
+      "nutricion": {
+        "kcal": 417,
+        "prot": 36.8,
+        "carb": 44.6,
+        "grasa": 9.5,
+        "fibra": 5.8
+      }
+    },
+    {
+      "id": "alm-01",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Pollo al curry con arroz y brócoli",
+      "ingredientes": [
+        {
+          "id": "pechuga_pollo",
+          "g": 180,
+          "nombre": "Pechuga de pollo",
+          "categoria": "proteina"
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 150,
+          "nombre": "Arroz cocido (vasito o congelado)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "brocoli",
+          "g": 290,
+          "nombre": "Brócoli congelado",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Pollo en dados salteado con el aceite y curry. Añade el brócoli (directo del congelador) 5-6 min con un chorrito de agua. Calienta el arroz 1 min en el micro y junta todo.",
+      "nutricion": {
+        "kcal": 609,
+        "prot": 54.0,
+        "carb": 54.3,
+        "grasa": 16.1,
+        "fibra": 8.3
+      }
+    },
+    {
+      "id": "alm-02",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Pasta integral con pavo y tomate",
+      "ingredientes": [
+        {
+          "id": "pechuga_pavo",
+          "g": 170,
+          "nombre": "Pechuga de pavo (filetes)",
+          "categoria": "proteina"
+        },
+        {
+          "id": "pasta_integral",
+          "g": 70,
+          "nombre": "Pasta integral (seca)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 100,
+          "nombre": "Tomate triturado (bote)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "calabacin",
+          "g": 200,
+          "nombre": "Calabacín",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Cuece la pasta. Mientras, saltea el pavo en tiras y el calabacín en dados con el aceite, añade el tomate triturado y orégano 5 min. Mezcla con la pasta.",
+      "nutricion": {
+        "kcal": 614,
+        "prot": 51.8,
+        "carb": 53.4,
+        "grasa": 19.3,
+        "fibra": 8.5
+      }
+    },
+    {
+      "id": "alm-03",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Lomo de cerdo con patatas y judías verdes",
+      "ingredientes": [
+        {
+          "id": "lomo_cerdo",
+          "g": 210,
+          "nombre": "Lomo de cerdo (cinta, filetes)",
+          "categoria": "proteina"
+        },
+        {
+          "id": "patata",
+          "g": 270,
+          "nombre": "Patata",
+          "categoria": "tuberculo"
+        },
+        {
+          "id": "judias_verdes",
+          "g": 200,
+          "nombre": "Judías verdes congeladas",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Patata en dados al micro (8 min tapada) o airfryer (15 min). Judías verdes al vapor o micro. Lomo a la plancha con el aceite, ajo y perejil.",
+      "nutricion": {
+        "kcal": 606,
+        "prot": 55.2,
+        "carb": 54.5,
+        "grasa": 16.2,
+        "fibra": 10.3
+      }
+    },
+    {
+      "id": "alm-04",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Chili de ternera con alubias y arroz",
+      "ingredientes": [
+        {
+          "id": "ternera_picada_5",
+          "g": 180,
+          "nombre": "Carne picada de vacuno 5 % grasa",
+          "categoria": "proteina"
+        },
+        {
+          "id": "alubias",
+          "g": 160,
+          "nombre": "Alubias cocidas (bote)",
+          "categoria": "legumbre"
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 150,
+          "nombre": "Tomate triturado (bote)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 150,
+          "nombre": "Pimiento y cebolla (fresco o congelado)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 75,
+          "nombre": "Arroz cocido (vasito o congelado)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Sofríe pimiento y cebolla con el aceite, añade la carne, comino, pimentón y chile. Agrega tomate y alubias escurridas y cuece 10 min. Sirve con el arroz.",
+      "nutricion": {
+        "kcal": 604,
+        "prot": 53.7,
+        "carb": 55.2,
+        "grasa": 16.5,
+        "fibra": 14.9
+      }
+    },
+    {
+      "id": "alm-05",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Ensalada de garbanzos, atún y huevo",
+      "ingredientes": [
+        {
+          "id": "garbanzos",
+          "g": 230,
+          "nombre": "Garbanzos cocidos (bote)",
+          "categoria": "legumbre"
+        },
+        {
+          "id": "atun_natural",
+          "g": 112,
+          "nombre": "Atún claro al natural (escurrido)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "huevo",
+          "g": 55,
+          "nombre": "Huevo entero",
+          "categoria": "proteina"
+        },
+        {
+          "id": "ensalada",
+          "g": 150,
+          "nombre": "Ensalada de bolsa + tomate",
+          "categoria": "verdura"
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 50,
+          "nombre": "Pimiento y cebolla (fresco o congelado)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "pan_integral",
+          "g": 30,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Mezcla garbanzos enjuagados, atún escurrido, huevo cocido, ensalada, pimiento y cebolla picados. Aliña con aceite y vinagre. El pan, aparte.",
+      "nutricion": {
+        "kcal": 618,
+        "prot": 51.8,
+        "carb": 53.9,
+        "grasa": 18.8,
+        "fibra": 18.9
+      }
+    },
+    {
+      "id": "alm-06",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Bacalao con arroz integral y espinacas",
+      "ingredientes": [
+        {
+          "id": "bacalao",
+          "g": 240,
+          "nombre": "Bacalao congelado (lomos)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "arroz_integral_vasito",
+          "g": 175,
+          "nombre": "Arroz integral cocido (vasito)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "espinacas",
+          "g": 250,
+          "nombre": "Espinacas congeladas",
+          "categoria": "verdura"
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 60,
+          "nombre": "Tomate triturado (bote)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Bacalao al horno o airfryer (180 °C, 12-15 min) con ajo y pimentón. Espinacas salteadas con el aceite y ajo. Arroz 1 min de micro, con un poco de tomate si quieres.",
+      "nutricion": {
+        "kcal": 599,
+        "prot": 55.7,
+        "carb": 55.0,
+        "grasa": 15.5,
+        "fibra": 10.5
+      }
+    },
+    {
+      "id": "alm-07",
+      "momento": "almuerzo",
+      "tipo": "salado",
+      "nombre": "Lentejas estofadas con pollo y verduras",
+      "ingredientes": [
+        {
+          "id": "lentejas",
+          "g": 180,
+          "nombre": "Lentejas cocidas (bote)",
+          "categoria": "legumbre"
+        },
+        {
+          "id": "pechuga_pollo",
+          "g": 150,
+          "nombre": "Pechuga de pollo",
+          "categoria": "proteina"
+        },
+        {
+          "id": "menestra",
+          "g": 150,
+          "nombre": "Menestra de verduras congelada",
+          "categoria": "verdura"
+        },
+        {
+          "id": "tomate_triturado",
+          "g": 50,
+          "nombre": "Tomate triturado (bote)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "patata",
+          "g": 130,
+          "nombre": "Patata",
+          "categoria": "tuberculo"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Sofríe el pollo en dados con el aceite, añade menestra, patata en dados, tomate, pimentón y un vaso de agua. 15 min y añade las lentejas enjuagadas 5 min al final.",
+      "nutricion": {
+        "kcal": 608,
+        "prot": 54.1,
+        "carb": 53.7,
+        "grasa": 14.2,
+        "fibra": 17.0
+      }
+    },
+    {
+      "id": "mer-01",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Skyr con manzana y nueces",
+      "ingredientes": [
+        {
+          "id": "skyr",
+          "g": 300,
+          "nombre": "Skyr natural",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "manzana",
+          "g": 100,
+          "nombre": "Manzana",
+          "categoria": "fruta"
+        },
+        {
+          "id": "nueces",
+          "g": 10,
+          "nombre": "Nueces",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Skyr con la manzana en dados, canela y las nueces troceadas.",
+      "nutricion": {
+        "kcal": 306,
+        "prot": 34.8,
+        "carb": 24.7,
+        "grasa": 7.3,
+        "fibra": 2.7
+      }
+    },
+    {
+      "id": "mer-02",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Queso batido con frutos rojos y cacao",
+      "ingredientes": [
+        {
+          "id": "queso_batido_proteinas",
+          "g": 300,
+          "nombre": "Queso fresco batido +proteínas",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "frutos_rojos",
+          "g": 150,
+          "nombre": "Frutos rojos congelados",
+          "categoria": "fruta"
+        },
+        {
+          "id": "cacao_puro",
+          "g": 5,
+          "nombre": "Cacao puro desgrasado en polvo",
+          "categoria": "otro"
+        },
+        {
+          "id": "almendras",
+          "g": 10,
+          "nombre": "Almendras crudas",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Mezcla el queso batido con el cacao y edulcorante al gusto. Encima los frutos rojos y las almendras.",
+      "nutricion": {
+        "kcal": 302,
+        "prot": 34.6,
+        "carb": 23.4,
+        "grasa": 7.9,
+        "fibra": 8.7
+      }
+    },
+    {
+      "id": "mer-03",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Batido de whey con plátano",
+      "ingredientes": [
+        {
+          "id": "leche_desnatada",
+          "g": 200,
+          "nombre": "Leche desnatada",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "whey",
+          "g": 30,
+          "nombre": "Proteína whey (en polvo)",
+          "categoria": "proteina"
+        },
+        {
+          "id": "platano",
+          "g": 60,
+          "nombre": "Plátano",
+          "categoria": "fruta"
+        },
+        {
+          "id": "crema_cacahuete",
+          "g": 10,
+          "nombre": "Crema de cacahuete 100 %",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Todo a la batidora con hielo.",
+      "nutricion": {
+        "kcal": 303,
+        "prot": 33.1,
+        "carb": 24.8,
+        "grasa": 7.5,
+        "fibra": 2.3
+      }
+    },
+    {
+      "id": "mer-04",
+      "momento": "merienda",
+      "tipo": "dulce",
+      "nombre": "Yogur proteico con kiwi y lino",
+      "ingredientes": [
+        {
+          "id": "yogur_proteico",
+          "g": 300,
+          "nombre": "Yogur natural +proteínas 0 %",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "kiwi",
+          "g": 80,
+          "nombre": "Kiwi",
+          "categoria": "fruta"
+        },
+        {
+          "id": "lino_molido",
+          "g": 10,
+          "nombre": "Semillas de lino molidas",
+          "categoria": "grasa"
+        },
+        {
+          "id": "avena",
+          "g": 10,
+          "nombre": "Copos de avena",
+          "categoria": "cereal"
+        }
+      ],
+      "preparacion": "Yogur con kiwi en rodajas, lino molido y avena por encima.",
+      "nutricion": {
+        "kcal": 303,
+        "prot": 34.0,
+        "carb": 25.4,
+        "grasa": 6.0,
+        "fibra": 6.1
+      }
+    },
+    {
+      "id": "mer-05",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Bocadillo de pavo y yogur proteico",
+      "ingredientes": [
+        {
+          "id": "pan_integral",
+          "g": 45,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 90,
+          "nombre": "Pechuga de pavo en lonchas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "tomate",
+          "g": 40,
+          "nombre": "Tomate natural",
+          "categoria": "verdura"
+        },
+        {
+          "id": "yogur_proteico",
+          "g": 125,
+          "nombre": "Yogur natural +proteínas 0 %",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Bocadillo de pan de molde integral con tomate, un hilo de aceite y pavo. Yogur de postre.",
+      "nutricion": {
+        "kcal": 309,
+        "prot": 32.5,
+        "carb": 27.4,
+        "grasa": 7.3,
+        "fibra": 3.5
+      }
+    },
+    {
+      "id": "mer-06",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Tortitas de maíz con atún y queso batido",
+      "ingredientes": [
+        {
+          "id": "tortitas_maiz",
+          "g": 24,
+          "nombre": "Tortitas de maíz",
+          "categoria": "cereal"
+        },
+        {
+          "id": "atun_natural",
+          "g": 112,
+          "nombre": "Atún claro al natural (escurrido)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "queso_batido_proteinas",
+          "g": 80,
+          "nombre": "Queso fresco batido +proteínas",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "tomate",
+          "g": 100,
+          "nombre": "Tomate natural",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 5,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Mezcla el atún con el queso batido, pimienta y orégano. Úntalo sobre las tortitas y acompaña con tomate cherry.",
+      "nutricion": {
+        "kcal": 304,
+        "prot": 34.2,
+        "carb": 25.7,
+        "grasa": 7.4,
+        "fibra": 1.4
+      }
+    },
+    {
+      "id": "mer-07",
+      "momento": "merienda",
+      "tipo": "salado",
+      "nombre": "Hummus con zanahoria y pavo",
+      "ingredientes": [
+        {
+          "id": "hummus",
+          "g": 20,
+          "nombre": "Hummus clásico",
+          "categoria": "legumbre"
+        },
+        {
+          "id": "pavo_lonchas",
+          "g": 180,
+          "nombre": "Pechuga de pavo en lonchas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "zanahoria",
+          "g": 180,
+          "nombre": "Zanahoria",
+          "categoria": "verdura"
+        },
+        {
+          "id": "pan_integral",
+          "g": 15,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        }
+      ],
+      "preparacion": "Bastones de zanahoria para mojar en el hummus, rollitos de pavo y, si cabe, una tostada.",
+      "nutricion": {
+        "kcal": 305,
+        "prot": 34.1,
+        "carb": 24.0,
+        "grasa": 6.9,
+        "fibra": 7.3
+      }
+    },
+    {
+      "id": "cen-01",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Merluza con patatas y judías verdes",
+      "ingredientes": [
+        {
+          "id": "merluza",
+          "g": 290,
+          "nombre": "Merluza congelada",
+          "categoria": "pescado"
+        },
+        {
+          "id": "patata",
+          "g": 230,
+          "nombre": "Patata",
+          "categoria": "tuberculo"
+        },
+        {
+          "id": "judias_verdes",
+          "g": 240,
+          "nombre": "Judías verdes congeladas",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Patata en rodajas al micro (8 min tapada) o airfryer. Merluza encima al horno o airfryer 12 min con ajo, perejil y el aceite. Judías al vapor.",
+      "nutricion": {
+        "kcal": 602,
+        "prot": 55.3,
+        "carb": 49.4,
+        "grasa": 18.6,
+        "fibra": 10.9
+      }
+    },
+    {
+      "id": "cen-02",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Bacalao con garbanzos y espinacas",
+      "ingredientes": [
+        {
+          "id": "bacalao",
+          "g": 180,
+          "nombre": "Bacalao congelado (lomos)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "garbanzos",
+          "g": 120,
+          "nombre": "Garbanzos cocidos (bote)",
+          "categoria": "legumbre"
+        },
+        {
+          "id": "espinacas",
+          "g": 200,
+          "nombre": "Espinacas congeladas",
+          "categoria": "verdura"
+        },
+        {
+          "id": "pan_integral",
+          "g": 60,
+          "nombre": "Pan de molde 100 % integral",
+          "categoria": "cereal"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Saltea ajo con el aceite, añade espinacas y garbanzos con comino y pimentón. Pon el bacalao en trozos encima y tapa 6-8 min a fuego medio.",
+      "nutricion": {
+        "kcal": 617,
+        "prot": 52.1,
+        "carb": 46.7,
+        "grasa": 21.7,
+        "fibra": 16.5
+      }
+    },
+    {
+      "id": "cen-03",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Salmón con arroz y brócoli",
+      "ingredientes": [
+        {
+          "id": "salmon",
+          "g": 150,
+          "nombre": "Salmón (lomos congelados)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 125,
+          "nombre": "Arroz cocido (vasito o congelado)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "brocoli",
+          "g": 220,
+          "nombre": "Brócoli congelado",
+          "categoria": "verdura"
+        },
+        {
+          "id": "yogur_proteico",
+          "g": 125,
+          "nombre": "Yogur natural +proteínas 0 %",
+          "categoria": "lacteo"
+        }
+      ],
+      "preparacion": "Salmón en airfryer (180 °C, 10-12 min) o sartén sin aceite. Brócoli al vapor con limón. Arroz de vasito. Yogur proteico de postre.",
+      "nutricion": {
+        "kcal": 614,
+        "prot": 52.4,
+        "carb": 49.1,
+        "grasa": 21.0,
+        "fibra": 6.3
+      }
+    },
+    {
+      "id": "cen-04",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Wraps de pollo con verduras y aguacate",
+      "ingredientes": [
+        {
+          "id": "tortilla_integral",
+          "g": 80,
+          "nombre": "Tortillas de trigo integrales (wrap)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "pechuga_pollo",
+          "g": 170,
+          "nombre": "Pechuga de pollo",
+          "categoria": "proteina"
+        },
+        {
+          "id": "pimiento_cebolla",
+          "g": 200,
+          "nombre": "Pimiento y cebolla (fresco o congelado)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "queso_batido_0",
+          "g": 60,
+          "nombre": "Queso fresco batido 0 %",
+          "categoria": "lacteo"
+        },
+        {
+          "id": "aguacate",
+          "g": 20,
+          "nombre": "Aguacate",
+          "categoria": "grasa"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Saltea el pollo en tiras con pimiento y cebolla, el aceite y especias (fajitas). Rellena las tortillas con el queso batido como salsa y el aguacate.",
+      "nutricion": {
+        "kcal": 614,
+        "prot": 53.7,
+        "carb": 46.3,
+        "grasa": 20.8,
+        "fibra": 11.9
+      }
+    },
+    {
+      "id": "cen-05",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Tortilla de claras y patata con ensalada",
+      "ingredientes": [
+        {
+          "id": "claras",
+          "g": 380,
+          "nombre": "Claras de huevo pasteurizadas",
+          "categoria": "proteina"
+        },
+        {
+          "id": "huevo",
+          "g": 55,
+          "nombre": "Huevo entero",
+          "categoria": "proteina"
+        },
+        {
+          "id": "patata",
+          "g": 240,
+          "nombre": "Patata",
+          "categoria": "tuberculo"
+        },
+        {
+          "id": "ensalada",
+          "g": 200,
+          "nombre": "Ensalada de bolsa + tomate",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Patata en láminas finas al micro (6-8 min tapada). Cuájala en sartén con claras, huevo y la mitad del aceite. Ensalada aliñada con el resto.",
+      "nutricion": {
+        "kcal": 611,
+        "prot": 53.8,
+        "carb": 48.8,
+        "grasa": 21.7,
+        "fibra": 6.6
+      }
+    },
+    {
+      "id": "cen-06",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Arroz salteado con gambas y sepia",
+      "ingredientes": [
+        {
+          "id": "gambas",
+          "g": 110,
+          "nombre": "Gambas peladas congeladas",
+          "categoria": "pescado"
+        },
+        {
+          "id": "sepia",
+          "g": 190,
+          "nombre": "Sepia congelada (limpia)",
+          "categoria": "pescado"
+        },
+        {
+          "id": "arroz_vasito",
+          "g": 125,
+          "nombre": "Arroz cocido (vasito o congelado)",
+          "categoria": "cereal"
+        },
+        {
+          "id": "salteado_verduras",
+          "g": 200,
+          "nombre": "Salteado de verduras congelado (sin salsa)",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 15,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Saltea sepia y gambas con ajo y el aceite. Añade el salteado de verduras y, al final, el arroz, con un chorrito de soja.",
+      "nutricion": {
+        "kcal": 614,
+        "prot": 53.9,
+        "carb": 51.4,
+        "grasa": 20.3,
+        "fibra": 5.6
+      }
+    },
+    {
+      "id": "cen-07",
+      "momento": "cena",
+      "tipo": "salado",
+      "nombre": "Lomo de cerdo con boniato y brócoli",
+      "ingredientes": [
+        {
+          "id": "lomo_cerdo",
+          "g": 200,
+          "nombre": "Lomo de cerdo (cinta, filetes)",
+          "categoria": "proteina"
+        },
+        {
+          "id": "boniato",
+          "g": 220,
+          "nombre": "Boniato",
+          "categoria": "tuberculo"
+        },
+        {
+          "id": "brocoli",
+          "g": 200,
+          "nombre": "Brócoli congelado",
+          "categoria": "verdura"
+        },
+        {
+          "id": "aceite_oliva",
+          "g": 10,
+          "nombre": "Aceite de oliva virgen extra",
+          "categoria": "grasa"
+        }
+      ],
+      "preparacion": "Boniato en dados en airfryer (180 °C, 15-18 min) con parte del aceite y pimentón. Lomo a la plancha. Brócoli al vapor con el resto del aceite.",
+      "nutricion": {
+        "kcal": 615,
+        "prot": 53.1,
+        "carb": 49.4,
+        "grasa": 21.0,
+        "fibra": 11.8
+      }
+    }
+  ]
+}
